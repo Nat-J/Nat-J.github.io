@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useLang } from '@/components/LangContext'
 import { t } from '@/data/content'
 
-const sections = ['about', 'education', 'research', 'publications', 'experience', 'skills', 'contact'] as const
+const sections = ['about', 'education', 'research', 'publications', 'projects', 'experience', 'skills', 'contact'] as const
 
 export default function Navbar() {
   const { lang, toggle } = useLang()

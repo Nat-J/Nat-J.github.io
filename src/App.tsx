@@ -13,12 +13,11 @@ export default function App() {
         {/* ===== Profile / About ===== */}
         <section id="about" className="flex flex-col sm:flex-row gap-6 mb-12">
           <div className="shrink-0">
-            <div
-              className="w-[140px] h-[140px] rounded-sm flex items-center justify-center"
-              style={{ background: '#e9ecef', color: '#adb5bd', fontSize: '13px' }}
-            >
-              Photo
-            </div>
+            <img
+              src="/images/profile_photo_local.jpg"
+              alt={t.profile.name[lang]}
+              className="w-[140px] h-[140px] rounded-sm object-cover"
+            />
           </div>
 
           <div className="flex-1">
@@ -99,22 +98,26 @@ export default function App() {
           </h2>
           {t.publications.items.map((item, idx) => (
             <div key={idx} className="mb-5 flex gap-4">
-              {/* 缩略图 */}
-              {item.image && (
-                <a
-                  href={item.link || item.image}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title[lang]}
-                    className="w-[120px] h-[80px] object-cover rounded border"
-                    style={{ borderColor: '#dee2e6' }}
-                    onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
-                  />
-                </a>
+              {/* 缩略图（支持多张） */}
+              {item.images && item.images.length > 0 && (
+                <div className="shrink-0 flex flex-col gap-1.5">
+                  {item.images.map((img, imgIdx) => (
+                    <a
+                      key={imgIdx}
+                      href={item.link || img}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={img}
+                        alt={`${item.title[lang]} - ${imgIdx + 1}`}
+                        className="w-[120px] h-[80px] object-cover rounded border"
+                        style={{ borderColor: '#dee2e6' }}
+                        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                      />
+                    </a>
+                  ))}
+                </div>
               )}
               <div className="flex-1">
                 <p className="text-[15px] mb-0.5 flex items-center gap-2">
@@ -178,25 +181,68 @@ export default function App() {
 
         <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
 
+        {/* ===== Projects ===== */}
+        <section id="projects" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+            {t.projects.title[lang]}
+          </h2>
+          {t.projects.items.map((item, idx) => (
+            <div key={idx} className="mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                <span className="text-[15px] font-medium" style={{ color: '#212529' }}>{item.title[lang]}</span>
+                <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
+              </div>
+              {item.desc && (item.desc.en || item.desc.zh) && (
+                <p className="text-[14px] mb-1.5" style={{ color: '#212529' }}>{item.desc[lang]}</p>
+              )}
+              {item.techStack && (
+                <div className="flex flex-wrap gap-1.5 mb-1">
+                  {item.techStack.split(',').map((tech, ti) => (
+                    <span
+                      key={ti}
+                      className="text-[12px] px-2 py-0.5 rounded"
+                      style={{ background: '#e9ecef', color: '#495057' }}
+                    >
+                      {tech.trim()}
+                    </span>
+                  ))}
+                </div>
+              )}
+              {item.images && item.images.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {item.images.map((img, imgIdx) => (
+                    <a key={imgIdx} href={img} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={img}
+                        alt={`${item.title[lang]} - ${imgIdx + 1}`}
+                        className="w-[160px] h-[100px] object-cover rounded border"
+                        style={{ borderColor: '#dee2e6' }}
+                        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                      />
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
         {/* ===== Experience ===== */}
         <section id="experience" className="mb-12">
           <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
             {t.experience.title[lang]}
           </h2>
           {t.experience.items.map((item, idx) => (
-            <div key={idx} className="mb-6">
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+            <div key={idx} className="mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
                 <div>
                   <span className="text-[16px] font-medium" style={{ color: '#212529' }}>{item.role[lang]}</span>
                   <span className="text-[14px]" style={{ color: '#6c757d' }}> — {item.org[lang]}</span>
                 </div>
                 <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
               </div>
-              <ul className="list-disc pl-5 space-y-0.5">
-                {item.bullets[lang].map((b, i) => (
-                  <li key={i} className="text-[14px]" style={{ color: '#212529' }}>{b}</li>
-                ))}
-              </ul>
             </div>
           ))}
         </section>
