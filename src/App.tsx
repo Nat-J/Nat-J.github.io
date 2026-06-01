@@ -98,19 +98,80 @@ export default function App() {
             {t.publications.title[lang]}
           </h2>
           {t.publications.items.map((item, idx) => (
-            <div key={idx} className="mb-5">
-              <p className="text-[15px] mb-0.5">
-                <span className="font-medium" style={{ color: '#212529' }}>{item.title[lang]}</span>
-              </p>
-              <p className="text-[14px]" style={{ color: '#6c757d' }}>
-                <a href="#">{item.venue}</a>
-                {item.status === 'in-progress' && (
-                  <span className="ml-2 text-[12px]" style={{ color: '#b45309' }}>
-                    [{lang === 'zh' ? '撰写中' : 'In Progress'}]
-                  </span>
+            <div key={idx} className="mb-5 flex gap-4">
+              {/* 缩略图 */}
+              {item.image && (
+                <a
+                  href={item.link || item.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title[lang]}
+                    className="w-[120px] h-[80px] object-cover rounded border"
+                    style={{ borderColor: '#dee2e6' }}
+                    onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
+                </a>
+              )}
+              <div className="flex-1">
+                <p className="text-[15px] mb-0.5 flex items-center gap-2">
+                  <span className="font-medium" style={{ color: '#212529' }}>{item.title[lang]}</span>
+                  {item.link && item.link !== '#' && (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={lang === 'zh' ? '查看论文' : 'View Paper'}
+                      className="shrink-0"
+                      style={{ color: '#0d6efd' }}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                    </a>
+                  )}
+                </p>
+                {item.authors && (
+                  <p className="text-[14px] mb-0.5" style={{ color: '#495057' }}>
+                    {t.publications.selfNames.reduce<React.ReactNode[]>(
+                      (parts, name, ni) => {
+                        const result: React.ReactNode[] = []
+                        parts.forEach((part, pi) => {
+                          if (typeof part === 'string') {
+                            const segments = part.split(name)
+                            segments.forEach((seg, si) => {
+                              if (seg) result.push(seg)
+                              if (si < segments.length - 1) result.push(<strong key={`b-${ni}-${pi}-${si}`}>{name}</strong>)
+                            })
+                          } else {
+                            result.push(part)
+                          }
+                        })
+                        return result
+                      },
+                      [item.authors]
+                    )}
+                  </p>
                 )}
-              </p>
-              <p className="text-[14px] mt-1" style={{ color: '#212529' }}>{item.desc[lang]}</p>
+                <p className="text-[14px]" style={{ color: '#6c757d' }}>
+                  {item.link && item.link !== '#' ? (
+                    <a href={item.link} target="_blank" rel="noopener noreferrer">{item.venue}</a>
+                  ) : (
+                    <span>{item.venue}</span>
+                  )}
+                  {item.status === 'in-progress' && (
+                    <span className="ml-2 text-[12px]" style={{ color: '#b45309' }}>
+                      [{lang === 'zh' ? '撰写中' : 'In Progress'}]
+                    </span>
+                  )}
+                </p>
+                <p className="text-[14px] mt-1" style={{ color: '#212529' }}>{item.desc[lang]}</p>
+              </div>
             </div>
           ))}
         </section>

@@ -15,8 +15,8 @@ export const t = {
     name: { en: 'Zijie Nie', zh: '聂子杰' },
     email: 'placeholder@email.com',
     bio: {
-      en: 'I am a robotics researcher and engineer with a strong foundation in 3D computer vision, robot manipulation, and reinforcement learning. I hold a Master\'s degree from Huazhong University of Science and Technology (HUST, 985) and a Bachelor\'s from Wuhan University of Technology (WUT, 211). I am seeking PhD opportunities in Embodied AI and Robotics starting Fall 2026.',
-      zh: '我是一名机器人领域的研究者和工程师，在三维计算机视觉、机器人操控和强化学习方面有扎实的基础。硕士毕业于华中科技大学（985），本科毕业于武汉理工大学（211）。正在寻求2026年秋季入学的具身智能与机器人方向博士机会。',
+      en: 'I am a robotics researcher and engineer with a strong foundation in 3D computer vision, robot manipulation, and reinforcement learning. I hold a Master\'s degree from Huazhong University of Science and Technology (HUST, 985) and a Bachelor\'s from Wuhan University of Technology (WUT, 211). ',
+      zh: '我当前在机器人领域中工作与探索，在三维计算机视觉、机器人操控和强化学习方面有扎实的基础。硕士毕业于华中科技大学（985），本科毕业于武汉理工大学（211）。',
     },
     links: [
       { label: 'Google Scholar', url: '#' },
@@ -24,8 +24,8 @@ export const t = {
       { label: 'LinkedIn', url: '#' },
     ],
     status: {
-      en: 'I am actively looking for PhD positions (Fall 2026). Target regions: Hong Kong, Singapore.',
-      zh: '正在积极寻求2026年秋季入学的博士机会。目标地区：中国香港、新加坡。',
+      en: 'I am seeking PhD opportunities in Embodied AI and Robotics starting Fall 2026/Spring 2027/Fall 2027. Target regions: Hong Kong, Singapore, and the United States.',
+      zh: '正在寻找2026 fall/2027 spring/2027 fall入学的具身智能与机器人方向的博士生机会-目标地区：中国香港、新加坡、美国。',
     },
   },
 
@@ -33,11 +33,11 @@ export const t = {
     title: { en: 'Education', zh: '教育背景' },
     items: [
       {
-        degree: { en: 'M.Eng. in Mechanical Engineering', zh: '工学硕士 · 机械工程' },
+        degree: { en: 'M.Eng. in Mechanical Engineering', zh: '工学硕士 · 机器人工程' },
         school: { en: 'Huazhong University of Science and Technology (HUST)', zh: '华中科技大学' },
         tag: { en: '985 · A+ Discipline', zh: '985 · 学科评估A+' },
         period: '2021 – 2024',
-        gpa: 'GPA 85',
+        gpa: 'GPA 3.5/4.0',
         advisor: {
           en: 'Advisor: Prof. Wenlong Li (Changjiang Scholar); Lab Head: Prof. Han Ding (Academician, CAS)',
           zh: '导师: 李文龙教授（长江学者）; 实验室带头人: 丁汉教授（中科院院士）',
@@ -49,12 +49,12 @@ export const t = {
         bullets: {
           en: [
             'Vision-guided robot machining planning',
-            'Underwater camera calibration algorithms',
+            'Underwater camera calibration algorithms of laser line sensor',
             'Semantic segmentation of large-scale point clouds',
           ],
           zh: [
             '基于视觉感知引导的机器人加工规划',
-            '自研水下相机的标定算法',
+            '水下线激光传感器的相机标定算法',
             '大规模点云的语义分割',
           ],
         },
@@ -64,7 +64,7 @@ export const t = {
         school: { en: 'Wuhan University of Technology (WUT)', zh: '武汉理工大学' },
         tag: { en: '211 · B+ Discipline · Top 9%', zh: '211 · 学科评估B+ · Top 9%' },
         period: '2017 – 2021',
-        gpa: 'GPA 86.5',
+        gpa: 'GPA 3.65/4.0',
         advisor: {
           en: 'Advisor: Prof. Yefa Hu · Hubei Key Lab of Digital Manufacturing',
           zh: '导师: 胡业发教授 · 数字制造湖北省重点实验室',
@@ -76,12 +76,12 @@ export const t = {
         bullets: {
           en: [
             'Polarization-based 3D imaging & point cloud processing',
-            'Structured light projection techniques',
+            'Bi-view structured light projection techniques and camera calibration algorithms',
             'National first-class major program',
           ],
           zh: [
             '偏振视觉的三维成像与点云后处理',
-            '结构光投影技术',
+            '双目结构光投影与相机标定算法',
             '国家级一流专业',
           ],
         },
@@ -125,14 +125,17 @@ export const t = {
 
   publications: {
     title: { en: 'Publications', zh: '发表论文' },
+    selfNames: ['Z. Nie', 'Zi-Jie Nie', 'Zijie Nie'],  // 你名字在论文中的各种写法，会自动加粗
     items: [
       {
         title: {
-          en: 'Collision-Free C-Space Polytope Decomposition for Real-Time Robot Trajectory Optimization',
-          zh: '面向实时机器人轨迹优化的构型空间无碰撞多面体分解',
+          en: '[Expected Title]  Collision-Free C-Space Polytope Decomposition for Real-Time Robot Trajectory Optimization',
+          zh: '[预计标题]面向实时机器人轨迹优化的构型空间无碰撞多面体分解',
         },
         venue: 'Target: IROS',
         status: 'in-progress' as const,
+        link: '#',  // TODO: 替换为论文链接
+        image: '/images/pub-cspace.png',  // TODO: 放入 public/images/ 目录
         desc: {
           en: 'Using C-IRIS framework with semidefinite programming for certified collision-free convex polytopes in TC-space, enabling real-time trajectory optimization at 1000Hz.',
           zh: '采用 C-IRIS 框架，通过半定规划在 TC 空间中认证无碰撞凸多面体，实现 1000Hz 实时轨迹优化。',
@@ -140,11 +143,13 @@ export const t = {
       },
       {
         title: {
-          en: '3D Visual Perception and Point Cloud Processing for Robotic Applications',
-          zh: '面向机器人应用的三维视觉感知与点云处理',
+          en: 'A Component Construction Progress Surveillance Method Using LiDAR and BIM',
         },
         venue: 'IEEE RCAE 2023',
         status: 'published' as const,
+        authors: 'Z. Nie, L. Ding, Q. Peng, X. Chu, C. Yuan and W. Li*,',  // TODO: 替换为真实作者列表
+        link: 'https://doi.org/10.1109/RCAE59706.2023.10398584',  // TODO: 替换为论文链接
+        image: '/images/pub-rcae2023.png',  // TODO: 放入 public/images/ 目录
         desc: {
           en: 'Research on 3D vision and point cloud perception, registration, and segmentation for robotic manipulation.',
           zh: '关于机器人操控任务中的三维视觉与点云感知、配准和分割的研究。',
@@ -157,6 +162,9 @@ export const t = {
         },
         venue: 'SPIE SPCS 2023',
         status: 'published' as const,
+        authors: 'Xin Guo, Zi-Jie Nie, Qi Peng, et al. ',  // TODO: 替换为真实作者列表
+        link: 'https://doi.org/10.1117/12.3012313',  // TODO: 替换为论文链接
+        image: '/images/pub-spie2023.png',  // TODO: 放入 public/images/ 目录
         desc: {
           en: 'Novel approaches for structured point cloud processing and global registration in 3D measurement systems.',
           zh: '三维测量系统中结构化点云处理与全局配准的新方法。',
@@ -190,8 +198,8 @@ export const t = {
         },
       },
       {
-        role: { en: 'Engineering Technologist', zh: '工程技术员' },
-        org: { en: 'CISDI Engineering Co., Ltd. (MCC Group)', zh: '中冶南方工程技术有限公司' },
+        role: { en: 'Engineering Technologist', zh: '机器人工程师' },
+        org: { en: 'WISDRI Engineering Co., Ltd. (MCC Group)', zh: '中冶南方工程技术有限公司' },
         period: '2024.07 – 2025.07',
         bullets: {
           en: [
@@ -205,7 +213,7 @@ export const t = {
         },
       },
       {
-        role: { en: 'Graduate Research Assistant', zh: '硕士研究生（科研）' },
+        role: { en: 'Graduate Research Assistant', zh: '硕士研究生（学术型）' },
         org: { en: 'HUST · State Key Lab of Intelligent Manufacturing', zh: '华中科技大学 · 智能制造装备与技术全国重点实验室' },
         period: '2021 – 2024',
         bullets: {
@@ -240,13 +248,11 @@ export const t = {
     title: { en: 'Contact', zh: '联系方式' },
     items: {
       en: [
-        'Email: placeholder@email.com',
-        'Target regions: Hong Kong, Singapore',
+        'Email: nzjess12345@gmail.com',
         'Available to start: anytime',
       ],
       zh: [
-        '邮箱: placeholder@email.com',
-        '目标地区: 中国香港、新加坡',
+        '邮箱: nzjess12345@gmail.com',
         '可随时开始研究工作',
       ],
     },
