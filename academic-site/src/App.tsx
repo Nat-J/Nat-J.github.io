@@ -1,0 +1,198 @@
+import { useLang } from '@/components/LangContext'
+import { t } from '@/data/content'
+import Navbar from '@/components/Navbar'
+
+export default function App() {
+  const { lang } = useLang()
+
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+
+      <div className="max-w-content mx-auto px-5 py-8 fade-in">
+        {/* ===== Profile / About ===== */}
+        <section id="about" className="flex flex-col sm:flex-row gap-6 mb-12">
+          <div className="shrink-0">
+            <div
+              className="w-[140px] h-[140px] rounded-sm flex items-center justify-center"
+              style={{ background: '#e9ecef', color: '#adb5bd', fontSize: '13px' }}
+            >
+              Photo
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <h1 className="text-[26px] font-medium mb-1" style={{ color: '#212529' }}>
+              {t.profile.name[lang]}
+            </h1>
+            <p className="text-[14px] mb-1" style={{ color: '#6c757d' }}>
+              Email: <a href={`mailto:${t.profile.email}`}>{t.profile.email}</a>
+            </p>
+            <div className="flex gap-3 mb-3 text-[14px]">
+              {t.profile.links.map((link, i) => (
+                <a key={i} href={link.url} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <p className="text-[15px] leading-relaxed mb-3" style={{ color: '#212529' }}>
+              {t.profile.bio[lang]}
+            </p>
+            <p className="text-[14px] font-medium" style={{ color: '#b45309' }}>
+              {t.profile.status[lang]}
+            </p>
+          </div>
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
+        {/* ===== Education ===== */}
+        <section id="education" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+            {t.education.title[lang]}
+          </h2>
+          {t.education.items.map((item, idx) => (
+            <div key={idx} className="mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                <div>
+                  <span className="text-[16px] font-medium" style={{ color: '#212529' }}>{item.degree[lang]}</span>
+                  <span className="text-[14px]" style={{ color: '#6c757d' }}> — {item.school[lang]}</span>
+                  <span className="text-[12px] ml-2" style={{ color: '#6c757d' }}>[{item.tag[lang]}]</span>
+                </div>
+                <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
+              </div>
+              <p className="text-[14px] mb-1" style={{ color: '#6c757d' }}>{item.gpa}</p>
+              <p className="text-[14px] mb-1" style={{ color: '#212529' }}>{item.advisor[lang]}</p>
+              <p className="text-[14px] italic mb-2" style={{ color: '#212529' }}>{item.thesis[lang]}</p>
+              <ul className="list-disc pl-5 space-y-0.5">
+                {item.bullets[lang].map((b, i) => (
+                  <li key={i} className="text-[14px]" style={{ color: '#212529' }}>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
+        {/* ===== Research Interests ===== */}
+        <section id="research" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+            {t.research.title[lang]}
+          </h2>
+          <ul className="list-disc pl-5 space-y-2">
+            {t.research.items.map((item, idx) => (
+              <li key={idx} className="text-[15px]" style={{ color: '#212529' }}>
+                <span className="font-medium">{item.label[lang]}</span>
+                <span style={{ color: '#6c757d' }}> — {item.desc[lang]}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
+        {/* ===== Publications ===== */}
+        <section id="publications" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+            {t.publications.title[lang]}
+          </h2>
+          {t.publications.items.map((item, idx) => (
+            <div key={idx} className="mb-5">
+              <p className="text-[15px] mb-0.5">
+                <span className="font-medium" style={{ color: '#212529' }}>{item.title[lang]}</span>
+              </p>
+              <p className="text-[14px]" style={{ color: '#6c757d' }}>
+                <a href="#">{item.venue}</a>
+                {item.status === 'in-progress' && (
+                  <span className="ml-2 text-[12px]" style={{ color: '#b45309' }}>
+                    [{lang === 'zh' ? '撰写中' : 'In Progress'}]
+                  </span>
+                )}
+              </p>
+              <p className="text-[14px] mt-1" style={{ color: '#212529' }}>{item.desc[lang]}</p>
+            </div>
+          ))}
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
+        {/* ===== Experience ===== */}
+        <section id="experience" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+            {t.experience.title[lang]}
+          </h2>
+          {t.experience.items.map((item, idx) => (
+            <div key={idx} className="mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+                <div>
+                  <span className="text-[16px] font-medium" style={{ color: '#212529' }}>{item.role[lang]}</span>
+                  <span className="text-[14px]" style={{ color: '#6c757d' }}> — {item.org[lang]}</span>
+                </div>
+                <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
+              </div>
+              <ul className="list-disc pl-5 space-y-0.5">
+                {item.bullets[lang].map((b, i) => (
+                  <li key={i} className="text-[14px]" style={{ color: '#212529' }}>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
+        {/* ===== Skills ===== */}
+        <section id="skills" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+            {t.skills.title[lang]}
+          </h2>
+          <table className="w-full text-[14px]">
+            <tbody>
+              {t.skills.categories.map((cat, idx) => (
+                <tr key={idx} className="align-top">
+                  <td className="pr-4 py-1.5 font-medium whitespace-nowrap" style={{ color: '#212529', width: '180px' }}>
+                    {cat.name[lang]}
+                  </td>
+                  <td className="py-1.5" style={{ color: '#212529' }}>{cat.items}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
+        {/* ===== Contact ===== */}
+        <section id="contact" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+            {t.contact.title[lang]}
+          </h2>
+          <ul className="list-disc pl-5 space-y-1">
+            {t.contact.items[lang].map((item, i) => (
+              <li key={i} className="text-[14px]" style={{ color: '#212529' }}>{item}</li>
+            ))}
+          </ul>
+          <div className="mt-4">
+            <a
+              href="#"
+              className="inline-block text-[14px] px-4 py-1.5 rounded no-underline"
+              style={{ border: '1px solid #dee2e6', color: '#212529' }}
+              onClick={e => {
+                e.preventDefault()
+                alert(lang === 'zh' ? '简历PDF即将上线' : 'CV PDF coming soon')
+              }}
+            >
+              {lang === 'zh' ? '下载简历 (PDF)' : 'Download CV (PDF)'}
+            </a>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="text-center py-6 text-[12px] mt-8" style={{ color: '#6c757d', borderTop: '1px solid #dee2e6' }}>
+          &copy; {new Date().getFullYear()} {t.profile.name[lang]}
+        </footer>
+      </div>
+    </div>
+  )
+}
