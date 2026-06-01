@@ -21,7 +21,7 @@ export default function App() {
           </div>
 
           <div className="flex-1">
-            <h1 className="text-[26px] font-medium mb-1" style={{ color: '#212529' }}>
+            <h1 className="text-[32px] font-medium mb-1" style={{ color: '#212529' }}>
               {t.profile.name[lang]}
             </h1>
             <p className="text-[14px] mb-1" style={{ color: '#6c757d' }}>
@@ -47,7 +47,11 @@ export default function App() {
 
         {/* ===== Education ===== */}
         <section id="education" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
             {t.education.title[lang]}
           </h2>
           {t.education.items.map((item, idx) => (
@@ -76,7 +80,11 @@ export default function App() {
 
         {/* ===== Research Interests ===== */}
         <section id="research" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
             {t.research.title[lang]}
           </h2>
           <ul className="list-disc pl-5 space-y-2">
@@ -93,32 +101,34 @@ export default function App() {
 
         {/* ===== Publications ===== */}
         <section id="publications" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
             {t.publications.title[lang]}
           </h2>
           {t.publications.items.map((item, idx) => (
             <div key={idx} className="mb-5 flex gap-4">
-              {/* 缩略图（支持多张） */}
-              {item.images && item.images.length > 0 && (
-                <div className="shrink-0 flex flex-col gap-1.5">
-                  {item.images.map((img, imgIdx) => (
-                    <a
-                      key={imgIdx}
-                      href={item.link || img}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        src={img}
-                        alt={`${item.title[lang]} - ${imgIdx + 1}`}
-                        className="w-[120px] h-[80px] object-cover rounded border"
-                        style={{ borderColor: '#dee2e6' }}
-                        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
-                      />
-                    </a>
-                  ))}
-                </div>
-              )}
+              {/* 图片列（固定宽度，无图时保持对齐） */}
+              <div className="shrink-0 w-[120px] flex flex-col gap-1.5">
+                {item.images && item.images.length > 0 && item.images.map((img, imgIdx) => (
+                  <a
+                    key={imgIdx}
+                    href={item.link || img}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={img}
+                      alt={`${item.title[lang]} - ${imgIdx + 1}`}
+                      className="w-[120px] h-[80px] object-cover rounded border"
+                      style={{ borderColor: '#dee2e6' }}
+                      onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                    />
+                  </a>
+                ))}
+              </div>
               <div className="flex-1">
                 <p className="text-[15px] mb-0.5 flex items-center gap-2">
                   <span className="font-medium" style={{ color: '#212529' }}>{item.title[lang]}</span>
@@ -183,7 +193,11 @@ export default function App() {
 
         {/* ===== Projects ===== */}
         <section id="projects" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
             {t.projects.title[lang]}
           </h2>
           {t.projects.items.map((item, idx) => (
@@ -231,7 +245,11 @@ export default function App() {
 
         {/* ===== Experience ===== */}
         <section id="experience" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
             {t.experience.title[lang]}
           </h2>
           {t.experience.items.map((item, idx) => (
@@ -251,7 +269,11 @@ export default function App() {
 
         {/* ===== Skills ===== */}
         <section id="skills" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
             {t.skills.title[lang]}
           </h2>
           <table className="w-full text-[14px]">
@@ -272,7 +294,11 @@ export default function App() {
 
         {/* ===== Contact ===== */}
         <section id="contact" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5" style={{ color: '#212529' }}>
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
             {t.contact.title[lang]}
           </h2>
           <ul className="list-disc pl-5 space-y-1">
@@ -282,13 +308,11 @@ export default function App() {
           </ul>
           <div className="mt-4">
             <a
-              href="#"
+              href="/CV_Zijie_Nie.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block text-[14px] px-4 py-1.5 rounded no-underline"
               style={{ border: '1px solid #dee2e6', color: '#212529' }}
-              onClick={e => {
-                e.preventDefault()
-                alert(lang === 'zh' ? '简历PDF即将上线' : 'CV PDF coming soon')
-              }}
             >
               {lang === 'zh' ? '下载简历 (PDF)' : 'Download CV (PDF)'}
             </a>

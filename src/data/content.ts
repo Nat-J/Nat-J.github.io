@@ -78,7 +78,6 @@ export const t = {
           en: [
             'Polarization-based 3D imaging & point cloud processing',
             'Bi-view structured light projection techniques and camera calibration algorithms',
-            'National first-class major program',
           ],
           zh: [
             '偏振视觉的三维成像与点云后处理',
@@ -318,10 +317,10 @@ export const t = {
     title: { en: 'Skills', zh: '技能专长' },
     categories: [
       { name: { en: 'Reinforcement Learning', zh: '强化学习' }, items: 'Policy Gradient, Q-Learning, DQN, DDPG, A3C, TRPO, PPO' },
-      { name: { en: 'LLM & Generative', zh: '大模型与生成式' }, items: 'Transformer, BERT, GPT-2, Flow Matching, Diffusion Models' },
+      { name: { en: 'LLM & Generative AI', zh: 'LLM与Gen AI' }, items: 'Transformer, BERT, GPT-2, Flow Matching, Diffusion Models' },
       { name: { en: 'Robotics', zh: '机器人学' }, items: 'Rigid Body Dynamics, Kinematics, Motion Planning, Sensor Fusion, ROS/ROS2, EtherCAT' },
       { name: { en: 'Computer Vision', zh: '计算机视觉' }, items: 'YOLO, Camera Calibration, Point Cloud Processing, 3D Reconstruction, Semantic Segmentation' },
-      { name: { en: 'Programming & Tools', zh: '编程与工具' }, items: 'Python, C++, CMake, Git, Linux, Docker, DDS' },
+      { name: { en: 'Programming & Tools', zh: '编程与工具' }, items: 'Python, C++, CMake, Git, Linux, Docker, DDS, pytorch' },
       { name: { en: 'CS Fundamentals', zh: '计算机基础' }, items: 'Data Structures, Algorithms, Compiler, Computer Architecture, Digital Circuits' },
     ],
   },
