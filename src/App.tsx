@@ -40,6 +40,9 @@ export default function App() {
             <p className="text-[14px] font-medium" style={{ color: '#b45309' }}>
               {t.profile.status[lang]}
             </p>
+            <p className="text-[18px] italic mt-4" style={{ color: '#adb5bd' }}>
+              {t.profile.quote[lang]}
+            </p>
           </div>
         </section>
 
