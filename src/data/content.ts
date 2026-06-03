@@ -47,7 +47,7 @@ export const t = {
         gpa: 'GPA 3.5/4.0',
         advisor: {
           en: 'Advisor: Prof. Wenlong Li (Changjiang Scholar); Lab Head: Prof. Han Ding (Academician, CAS)',
-          zh: '导师：李文龙教授（长江学者）；实验室带头人：丁汉教授（中科院院士）',
+          zh: '指导老师：李文龙教授（长江学者）；实验室带头人：丁汉教授（中科院院士）',
         },
         thesis: {
           en: 'Thesis: Component Region Extraction and Contour Feature Analysis for Industrial Large-Scale Point Clouds',
@@ -74,7 +74,7 @@ export const t = {
         gpa: 'GPA 3.56/4.0 · Top10%',
         advisor: {
           en: 'Advisor: Prof. Yefa Hu · Hubei Key Lab of Digital Manufacturing',
-          zh: '导师：胡业发教授 · 数字制造湖北省重点实验室',
+          zh: '指导老师：胡业发教授 · 数字制造湖北省重点实验室',
         },
         thesis: {
           en: 'Thesis: 3D Measurement of High-Reflective Surfaces Based on Structured Light',
