@@ -294,7 +294,6 @@ export default function App() {
         </section>
 
         <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
-
         {/* ===== Contact ===== */}
         <section id="contact" className="mb-12">
           <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
@@ -322,6 +321,114 @@ export default function App() {
           </div>
         </section>
 
+
+
+
+        {/* ===== Showcase Gallery ===== */}
+        <section id="showcase" className="mb-12 overflow-hidden">
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
+            {t.showcase.title[lang]}
+          </h2>
+          <div className="relative">
+            <div
+              className="flex gap-4 animate-scroll"
+              style={{
+                width: `${t.showcase.items.reduce((sum, it) => sum + (it.images.length > 1 ? 496 : 356), 0) * 2}px`,
+                animation: `scroll-left ${t.showcase.items.length * 6}s linear infinite`,
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.animationPlayState = 'paused' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.animationPlayState = 'running' }}
+            >
+              {[...t.showcase.items, ...t.showcase.items].map((item, idx) => (
+                <div key={idx} className="shrink-0" style={{ width: item.images.length > 1 ? '500px' : '380px' }}>
+                  <div className="flex gap-3 justify-center">
+                    {item.images.map((src, imgIdx) => (
+                      <div
+                        key={imgIdx}
+                        className="rounded overflow-hidden border flex items-center justify-center"
+                        style={{
+                          width: item.images.length > 1 ? '360px' : '320px',
+                          height: '280px',
+                          borderColor: '#dee2e6',
+                          background: '#f8f9fa',
+                        }}
+                      >
+                        <img
+                          src={src}
+                          alt={`${item.caption[lang]} - ${imgIdx + 1}`}
+                          className="max-w-full max-h-full object-contain"
+                          onError={e => {
+                            (e.target as HTMLImageElement).style.display = 'none'
+                            const parent = (e.target as HTMLImageElement).parentElement
+                            if (parent) parent.style.background = '#e9ecef'
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-[13px] mt-1.5 text-center" style={{ color: '#6c757d' }}>
+                    {item.caption[lang]}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <style>{`
+            @keyframes scroll-left {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-${t.showcase.items.reduce((sum, it) => sum + (it.images.length > 1 ? 496 : 356), 0)}px); }
+            }
+          `}</style>
+        </section>
+        {/* ===== About Me ===== */}
+        <section id="aboutme" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
+            {t.aboutme.title[lang]}
+          </h2>
+          {/* 生活照片网格 */}
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            {t.aboutme.photos.map((photo, idx) => (
+              <div key={idx} className="text-center">
+                <div
+                  className="rounded overflow-hidden border flex items-center justify-center"
+                  style={{ height: '250px', borderColor: '#dee2e6', background: '#f8f9fa' }}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.caption[lang] || `Photo ${idx + 1}`}
+                    className="max-w-full max-h-full object-contain"
+                    onError={e => {
+                      (e.target as HTMLImageElement).style.display = 'none'
+                      const parent = (e.target as HTMLImageElement).parentElement
+                      if (parent) parent.style.background = '#e9ecef'
+                    }}
+                  />
+                </div>
+                {photo.caption[lang] && (
+                  <p className="text-[12px] mt-1" style={{ color: '#6c757d' }}>
+                    {photo.caption[lang]}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+          {/* 生活描述 */}
+          {t.aboutme.bio[lang] && (
+            <p className="text-[15px] leading-relaxed" style={{ color: '#212529' }}>
+              {t.aboutme.bio[lang]}
+            </p>
+          )}
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
         {/* Footer */}
         <footer className="text-center py-6 text-[12px] mt-8" style={{ color: '#6c757d', borderTop: '1px solid #dee2e6' }}>
           &copy; {new Date().getFullYear()} {t.profile.name[lang]}
