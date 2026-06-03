@@ -27,8 +27,8 @@ export const t = {
       { label: 'LinkedIn', url: 'https://www.linkedin.com/in/j-nat-07910b413/' },
     ],
     status: {
-      en: 'I am seeking PhD opportunities in Embodied AI and Robotics starting Fall 2026/Spring 2027/Fall 2027. Target regions: Hong Kong, Singapore, and the United States.[Benefiting from interdisciplinary training, I have strong engineering skills and a good debugging intuition, and can start full-time Research Assistant work in advance. Welcome to contact me]',
-      zh: '正在寻找 2026 Fall / 2027 Spring / 2027 Fall 入学的具身智能与机器人方向的PhD/RA机会。目标地区：中国香港、新加坡、美国。[得益于交叉学科的训练，我的工程能力和调试直觉很强，可以提前开展全职RA研究工作，欢迎联系]',
+      en: 'I am seeking [PhD/RA] opportunities in Embodied AI and Robotics starting Fall 2026/Spring 2027/Fall 2027. Target regions: Hong Kong, Singapore, and the United States.[Benefiting from interdisciplinary training, I have strong engineering skills and a good debugging intuition, and can start full-time Research Assistant work in advance. Welcome to contact me]',
+      zh: '正在寻找 2026 Fall / 2027 Spring / 2027 Fall 入学的具身智能与机器人方向的 [ PhD / RA ] 机会。目标地区：中国香港、新加坡、美国。[得益于交叉学科的训练，我的工程能力和调试直觉很强，可以提前开展全职RA研究工作，欢迎联系]',
     },
     quote: {
       en: '"Our generation was born too late to explore the Earth and too early to explore the stars, but we were born just in time to solve robotics."',
@@ -40,7 +40,7 @@ export const t = {
     title: { en: 'Education', zh: '教育背景' },
     items: [
       {
-        degree: { en: 'M.Eng. in Mechanical Engineering [Academic Program]', zh: '工学硕士[学术型] · 机器人工程' },
+        degree: { en: 'M.Eng. in Mechanical Engineering [Academic Program]', zh: '工学硕士[学术型] · 机械工程' },
         school: { en: 'Huazhong University of Science and Technology (HUST)', zh: '华中科技大学' },
         tag: { en: '985 · A+ Discipline · National First-Class Major', zh: '985 · 学科评估A+ · 国家级一流学科' },
         period: '2021 – 2024',
@@ -174,7 +174,7 @@ export const t = {
         images: ['/images/pub-cspace.png'],  // TODO: 放入 public/images/ 目录，可添加多张
         desc: {
           en: 'Instead of pursuing complete coverage of the C-space, this work introduces an efficient seed selection algorithm to balance generation time and space coverage, constructing a trajectory optimization model based on projection. The planning problem is strictly constrained within the union of certified collision-free convex polytopes, ensuring absolute collision-free certification while enabling real-time generation of smooth and dynamically feasible trajectories。',
-          zh: '由于对无碰撞C-space的非凸特性，相较于迭代后的完备覆盖边界成本过高，采用启发式的种子选取算法以平衡生成时间和空间覆盖率，构建基于投影的轨迹优化模型，将规划问题严格约束于已认证的无碰撞凸包并集之内，从而在确保C-space绝对无碰撞的同时，实时生成光滑且动力学可行的轨迹。',
+          zh: '由于无碰撞C-space的非凸特性及在边界处扩张空间的计算成本过高，本文采用启发式的种子选取算法以平衡生成时间和空间覆盖率，构建基于投影的轨迹优化模型，将规划问题严格约束于已认证的无碰撞凸包并集之内，从而在确保C-space绝对无碰撞的同时，实时生成光滑且动力学可行的轨迹。',
         },
       },
     ],
