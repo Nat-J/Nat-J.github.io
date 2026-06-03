@@ -85,27 +85,6 @@ export default function App() {
 
         <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
 
-        {/* ===== Research Interests ===== */}
-        <section id="research" className="mb-12">
-          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
-            color: '#212529',
-            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
-            backgroundBlendMode: 'multiply',
-          }}>
-            {t.research.title[lang]}
-          </h2>
-          <ul className="list-disc pl-5 space-y-2">
-            {t.research.items.map((item, idx) => (
-              <li key={idx} className="text-[15px]" style={{ color: '#212529' }}>
-                <span className="font-medium">{item.label[lang]}</span>
-                <span style={{ color: '#6c757d' }}> — {item.desc[lang]}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
-
         {/* ===== Publications ===== */}
         <section id="publications" className="mb-12">
           <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
@@ -194,6 +173,27 @@ export default function App() {
               </div>
             </div>
           ))}
+        </section>
+
+        <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
+
+        {/* ===== Research Interests ===== */}
+        <section id="research" className="mb-12">
+          <h2 className="text-[22px] font-medium mb-5 inline-block" style={{
+            color: '#212529',
+            background: 'linear-gradient(transparent 60%, rgba(108,117,125,0.25) 60%)',
+            backgroundBlendMode: 'multiply',
+          }}>
+            {t.research.title[lang]}
+          </h2>
+          <ul className="list-disc pl-5 space-y-2">
+            {t.research.items.map((item, idx) => (
+              <li key={idx} className="text-[15px]" style={{ color: '#212529' }}>
+                <span className="font-medium">{item.label[lang]}</span>
+                <span style={{ color: '#6c757d' }}> — {item.desc[lang]}</span>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <hr style={{ borderColor: '#dee2e6' }} className="my-8" />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '@/components/LangContext'
 import { t } from '@/data/content'
+import { exportAsCards } from '@/utils/exportSections'
 
 const sections = ['about', 'education', 'research', 'publications', 'projects', 'experience', 'skills', 'contact', 'showcase', 'aboutme'] as const
 
@@ -8,6 +9,7 @@ export default function Navbar() {
   const { lang, toggle, privacy, togglePrivacy } = useLang()
   const [open, setOpen] = useState(false)
   const [fabOpen, setFabOpen] = useState(true)
+  const [exporting, setExporting] = useState(false)
 
   // 3秒后自动收起
   useEffect(() => {
@@ -129,6 +131,35 @@ export default function Navbar() {
               <span>{privacy
                 ? (lang === 'zh' ? '关闭隐私模式' : 'Privacy Off')
                 : (lang === 'zh' ? '开启隐私模式' : 'Privacy On')
+              }</span>
+            </button>
+            {/* 导出为图片 */}
+            <button
+              onClick={async () => {
+                if (exporting) return
+                setExporting(true)
+                setFabOpen(false)
+                try {
+                  await exportAsCards(lang)
+                } finally {
+                  setTimeout(() => setExporting(false), 1000)
+                }
+              }}
+              disabled={exporting}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg cursor-pointer border-none"
+              style={{
+                background: exporting ? '#6c757d' : '#0d6efd',
+                color: '#fff',
+                fontSize: '14px',
+                fontWeight: 500,
+                animation: 'fab-pop 0.2s ease-out 0.1s both',
+                opacity: exporting ? 0.7 : 1,
+              }}
+            >
+              <span>{exporting ? '⏳' : '📸'}</span>
+              <span>{exporting
+                ? (lang === 'zh' ? '导出中...' : 'Exporting...')
+                : (lang === 'zh' ? '导出为图片' : 'Export as Images')
               }</span>
             </button>
           </>
