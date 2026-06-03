@@ -5,7 +5,7 @@ import { t } from '@/data/content'
 const sections = ['about', 'education', 'research', 'publications', 'projects', 'experience', 'skills', 'contact', 'showcase', 'aboutme'] as const
 
 export default function Navbar() {
-  const { lang, toggle } = useLang()
+  const { lang, toggle, privacy, togglePrivacy } = useLang()
   const [open, setOpen] = useState(false)
 
   return (
@@ -16,7 +16,7 @@ export default function Navbar() {
           className="text-white font-medium text-[15px] no-underline hover:no-underline"
           style={{ color: '#fff' }}
         >
-          {t.profile.name[lang]}
+          {privacy ? '***' : t.profile.name[lang]}
         </a>
 
         {/* Desktop */}
@@ -44,6 +44,18 @@ export default function Navbar() {
           >
             {lang === 'en' ? '中文' : 'EN'}
           </button>
+          <button
+            onClick={togglePrivacy}
+            className="text-[12px] px-2 py-0.5 rounded border cursor-pointer"
+            style={{
+              color: privacy ? '#ffc107' : 'rgba(255,255,255,0.7)',
+              borderColor: privacy ? '#ffc107' : 'rgba(255,255,255,0.3)',
+              background: 'transparent',
+            }}
+            title={lang === 'zh' ? '隐私模式' : 'Privacy Mode'}
+          >
+            {privacy ? '🔒' : '🔓'}
+          </button>
         </div>
 
         {/* Mobile burger */}
@@ -69,17 +81,30 @@ export default function Navbar() {
               {t.nav[s][lang]}
             </a>
           ))}
-          <button
-            onClick={toggle}
-            className="mt-2 text-[12px] px-2 py-0.5 rounded border cursor-pointer"
-            style={{
-              color: 'rgba(255,255,255,0.7)',
-              borderColor: 'rgba(255,255,255,0.3)',
-              background: 'transparent',
-            }}
-          >
-            {lang === 'en' ? '中文' : 'EN'}
-          </button>
+          <div className="flex gap-2 mt-2">
+            <button
+              onClick={toggle}
+              className="text-[12px] px-2 py-0.5 rounded border cursor-pointer"
+              style={{
+                color: 'rgba(255,255,255,0.7)',
+                borderColor: 'rgba(255,255,255,0.3)',
+                background: 'transparent',
+              }}
+            >
+              {lang === 'en' ? '中文' : 'EN'}
+            </button>
+            <button
+              onClick={togglePrivacy}
+              className="text-[12px] px-2 py-0.5 rounded border cursor-pointer"
+              style={{
+                color: privacy ? '#ffc107' : 'rgba(255,255,255,0.7)',
+                borderColor: privacy ? '#ffc107' : 'rgba(255,255,255,0.3)',
+                background: 'transparent',
+              }}
+            >
+              {privacy ? '🔒 ' + (lang === 'zh' ? '隐私开' : 'Privacy On') : '🔓 ' + (lang === 'zh' ? '隐私关' : 'Privacy Off')}
+            </button>
+          </div>
         </div>
       )}
     </nav>

@@ -49,6 +49,10 @@ export const t = {
           en: 'Advisor: Prof. Wenlong Li (Changjiang Scholar); Lab Head: Prof. Han Ding (Academician, CAS)',
           zh: '指导老师：李文龙教授（长江学者）；实验室带头人：丁汉教授（中科院院士）',
         },
+        maskedAdvisor: {
+          en: 'Advisor: Prof. *** (Changjiang Scholar); Lab Head: Prof. *** (Academician, CAS)',
+          zh: '指导老师：***教授（长江学者）；实验室带头人：***教授（中科院院士）',
+        },
         thesis: {
           en: 'Thesis: Component Region Extraction and Contour Feature Analysis for Industrial Large-Scale Point Clouds',
           zh: '毕业论文：《面向工业场景大规模点云的构件区域提取与轮廓特征分析》',
@@ -75,6 +79,10 @@ export const t = {
         advisor: {
           en: 'Advisor: Prof. Yefa Hu · Hubei Key Lab of Digital Manufacturing',
           zh: '指导老师：胡业发教授 · 数字制造湖北省重点实验室',
+        },
+        maskedAdvisor: {
+          en: 'Advisor: Prof. *** · Hubei Key Lab of Digital Manufacturing',
+          zh: '指导老师：***教授 · 数字制造湖北省重点实验室',
         },
         thesis: {
           en: 'Thesis: 3D Measurement of High-Reflective Surfaces Based on Structured Light',

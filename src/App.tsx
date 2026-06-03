@@ -3,7 +3,9 @@ import { t } from '@/data/content'
 import Navbar from '@/components/Navbar'
 
 export default function App() {
-  const { lang } = useLang()
+  const { lang, privacy } = useLang()
+  // 隐私模式辅助：隐私开启时返回 "***"，否则返回原文
+  const m = (text: string) => privacy ? '***' : text
 
   return (
     <div className="min-h-screen">
@@ -22,10 +24,10 @@ export default function App() {
 
           <div className="flex-1">
             <h1 className="text-[32px] font-medium mb-1" style={{ color: '#212529' }}>
-              {t.profile.name[lang]}
+              {m(t.profile.name[lang])}
             </h1>
             <p className="text-[14px] mb-1" style={{ color: '#6c757d' }}>
-              Email: <a href={`mailto:${t.profile.email}`}>{t.profile.email}</a>
+              Email: <a href={`mailto:${privacy ? '***' : t.profile.email}`}>{m(t.profile.email)}</a>
             </p>
             <div className="flex gap-3 mb-3 text-[14px]">
               {t.profile.links.map((link, i) => (
@@ -68,7 +70,9 @@ export default function App() {
                 <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
               </div>
               <p className="text-[14px] mb-1" style={{ color: '#6c757d' }}>{item.gpa}</p>
-              <p className="text-[14px] mb-1" style={{ color: '#212529' }}>{item.advisor[lang]}</p>
+              <p className="text-[14px] mb-1" style={{ color: '#212529' }}>
+                {privacy && item.maskedAdvisor ? item.maskedAdvisor[lang] : item.advisor[lang]}
+              </p>
               <p className="text-[14px] italic mb-2" style={{ color: '#212529' }}>{item.thesis[lang]}</p>
               <ul className="list-disc pl-5 space-y-0.5">
                 {item.bullets[lang].map((b, i) => (
@@ -154,7 +158,7 @@ export default function App() {
                 </p>
                 {item.authors && (
                   <p className="text-[14px] mb-0.5" style={{ color: '#495057' }}>
-                    {t.publications.selfNames.reduce<React.ReactNode[]>(
+                    {privacy ? '***' : t.publications.selfNames.reduce<React.ReactNode[]>(
                       (parts, name, ni) => {
                         const result: React.ReactNode[] = []
                         parts.forEach((part, pi) => {
@@ -260,7 +264,7 @@ export default function App() {
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
                 <div>
                   <span className="text-[16px] font-medium" style={{ color: '#212529' }}>{item.role[lang]}</span>
-                  <span className="text-[14px]" style={{ color: '#6c757d' }}> — {item.org[lang]}</span>
+                  <span className="text-[14px]" style={{ color: '#6c757d' }}> — {m(item.org[lang])}</span>
                 </div>
                 <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
               </div>
@@ -305,18 +309,24 @@ export default function App() {
           </h2>
           <ul className="list-disc pl-5 space-y-1">
             {t.contact.items[lang].map((item, i) => (
-              <li key={i} className="text-[14px]" style={{ color: '#212529' }}>{item}</li>
+              <li key={i} className="text-[14px]" style={{ color: '#212529' }}>
+                {privacy ? item.replace(/nzjess12345@gmail\.com/g, '***@***.com') : item}
+              </li>
             ))}
           </ul>
           <div className="mt-4">
             <a
-              href="/CV_Zijie_Nie.pdf"
+              href={privacy ? '#' : '/CV_Zijie_Nie.pdf'}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-[14px] px-4 py-1.5 rounded no-underline"
               style={{ border: '1px solid #dee2e6', color: '#212529' }}
+              onClick={e => { if (privacy) e.preventDefault() }}
             >
-              {lang === 'zh' ? '下载简历 (PDF)' : 'Download CV (PDF)'}
+              {privacy
+                ? (lang === 'zh' ? '隐私模式已隐藏' : 'Hidden in Privacy Mode')
+                : (lang === 'zh' ? '下载简历 (PDF)' : 'Download CV (PDF)')
+              }
             </a>
           </div>
         </section>
@@ -431,7 +441,7 @@ export default function App() {
         <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
         {/* Footer */}
         <footer className="text-center py-6 text-[12px] mt-8" style={{ color: '#6c757d', borderTop: '1px solid #dee2e6' }}>
-          &copy; {new Date().getFullYear()} {t.profile.name[lang]}
+          &copy; {new Date().getFullYear()} {m(t.profile.name[lang])}
         </footer>
       </div>
     </div>
