@@ -1,6 +1,7 @@
 import { useLang } from '@/components/LangContext'
 import { t } from '@/data/content'
 import Navbar from '@/components/Navbar'
+import VisitorCounter from '@/components/VisitorCounter'
 
 export default function App() {
   const { lang, privacy } = useLang()
@@ -440,8 +441,11 @@ export default function App() {
 
         <hr style={{ borderColor: '#dee2e6' }} className="my-8" />
         {/* Footer */}
-        <footer className="text-center py-6 text-[12px] mt-8" style={{ color: '#6c757d', borderTop: '1px solid #dee2e6' }}>
-          &copy; {new Date().getFullYear()} {m(t.profile.name[lang])}
+        <footer className="text-center py-6 mt-8" style={{ borderTop: '1px solid #dee2e6' }}>
+          <VisitorCounter />
+          <p className="text-[12px] mt-1" style={{ color: '#6c757d' }}>
+            &copy; {new Date().getFullYear()} {m(t.profile.name[lang])}
+          </p>
         </footer>
       </div>
     </div>

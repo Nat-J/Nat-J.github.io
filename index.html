@@ -1,14 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Zijie Nie - PhD Applicant in Robotics & Embodied AI. Research in 3D vision, robot manipulation, and reinforcement learning." />
-    <title>Zijie Nie | Robotics & Embodied AI</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Zijie Nie - PhD Applicant in Robotics & Embodied AI. Research in 3D vision, robot manipulation, and reinforcement learning." />
+  <title>Zijie Nie | Robotics & Embodied AI</title>
+  <script>
+    // 忽略自己的访问：在浏览器控制台执行 localStorage.setItem('no_track','1')
+    // 恢复统计：localStorage.removeItem('no_track')
+    if (!localStorage.getItem('no_track')) {
+      var s = document.createElement('script');
+      s.setAttribute('data-goatcounter', 'https://natj.goatcounter.com/count');
+      s.async = true;
+      s.src = '//gc.zgo.at/count.js';
+      document.head.appendChild(s);
+    }
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
