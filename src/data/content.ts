@@ -54,8 +54,8 @@ export const t = {
           zh: '指导老师：***教授（长江学者）；实验室带头人：***教授（中科院院士）',
         },
         thesis: {
-          en: 'Thesis: Component Region Extraction and Contour Feature Analysis for Industrial Large-Scale Point Clouds',
-          zh: '毕业论文：《面向工业场景大规模点云的构件区域提取与轮廓特征分析》',
+          en: '',
+          zh: '',
         },
         bullets: {
           en: [
@@ -85,8 +85,8 @@ export const t = {
           zh: '指导老师：***教授 · 数字制造湖北省重点实验室',
         },
         thesis: {
-          en: 'Thesis: 3D Measurement of High-Reflective Surfaces Based on Structured Light',
-          zh: '毕业论文：《基于结构光技术的高反光材质三维测量方法研究》',
+          en: '',
+          zh: '',
         },
         bullets: {
           en: [
@@ -228,7 +228,7 @@ export const t = {
         period: '2025.11 – 2026.02',
         desc: {
           en: 'State estimation: Discrete-Time Kalman Filter (DKF) at 250 Hz fusing IMU pre-integration and foot-contact odometry; Torque control: Whole-Body Control (WBC) with PD feedback for whole-body joint torque distribution. Validated dynamic gait switching and locomotion stability in ROS-Gazebo simulation.',
-          zh: '状态估计：设计离散卡尔马滤波器（DKF），以 250 Hz 频率融合 IMU 预积分与足端接触里程计；力矩控制：基于 Whole-Body Control（WBC）+ PMIT模式实现全身关节力矩分配。已在 ROS-Gazebo 仿真环境中验证动态步态切换与运动稳定性。',
+          zh: '状态估计：设计离散卡尔曼滤波器（DKF），以 250 Hz 频率融合 IMU 预积分与足端接触里程计；力矩控制：基于 Whole-Body Control（WBC）+ MIT模式实现全身关节力矩分配。已在 ROS-Gazebo 仿真环境中验证动态步态切换与运动稳定性。',
         },
         techStack: 'DKF (250 Hz), WBC, PD, ROS-Gazebo, IMU',
         images: [],

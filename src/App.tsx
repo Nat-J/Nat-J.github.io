@@ -74,7 +74,9 @@ export default function App() {
               <p className="text-[14px] mb-1" style={{ color: '#212529' }}>
                 {privacy && item.maskedAdvisor ? item.maskedAdvisor[lang] : item.advisor[lang]}
               </p>
-              <p className="text-[14px] italic mb-2" style={{ color: '#212529' }}>{item.thesis[lang]}</p>
+              {item.thesis[lang] && (
+                <p className="text-[14px] italic mb-2" style={{ color: '#212529' }}>{item.thesis[lang]}</p>
+              )}
               <ul className="list-disc pl-5 space-y-0.5">
                 {item.bullets[lang].map((b, i) => (
                   <li key={i} className="text-[14px]" style={{ color: '#212529' }}>{b}</li>
