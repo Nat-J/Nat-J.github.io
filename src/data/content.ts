@@ -191,20 +191,35 @@ export const t = {
   projects: {
     title: { en: 'Projects', zh: '项目经历' },
     items: [
-      // ① IGH 主站运动控制器
+      // ④ 强化学习仿真
       {
         title: {
-          en: 'Online Motion Controller (Cerebellum) Development Based on IGH EtherCAT Master',
-          zh: '基于 IGH 主站的机器人在线运动控制器（小脑）研发',
+          en: 'Simulated Bipedal Locomotion Reinforcement Learning Based on Isaac Gym',
+          zh: '基于 Isaac Gym 的双足机器人下肢强化学习运动控制仿真',
         },
-        period: '2025.08 – 2026.02',
+        period: '2026.02 – 2026.05',
         desc: {
-          en: 'Developed a real-time robot motion controller on Preempt-RT Linux with IGH-EtherCAT master, achieving 14-joint / 6-motor synchronous drive at 1 kHz control loop. Adopted DDS-based pub/sub communication architecture for cross-module data exchange. Core drive module delivered and deployed on the Galbot platform.',
-          zh: '基于 Preempt-RT 实时内核与 IGH-EtherCAT 主站，实现 14 关节电机 1 kHz 高频同步驱动的在线运动控制器；采用 DDS 发布-订阅通信架构实现跨模块数据交互。核心驱动模块已交付至银河通用（Galbot）。',
+          en: 'Built a GPU-accelerated massively parallel bipedal simulation environment in Isaac Gym (4096+ envs). Designed Reward Shaping with structured state/action spaces for robust bipedal locomotion. Trained policies via PPO achieving stable omnidirectional blind locomotion across uneven terrain.',
+          zh: '基于 Isaac Gym 搭建 GPU 加速的大规模并行双足仿真环境；设计结构化 Reward Shaping 与状态/动作空间面向鲁棒步行；基于 PPO 算法训练策略，实现双足机器人在非平整地形下的全向自适应盲行。',
         },
-        techStack: 'Preempt-RT, IGH-EtherCAT, DDS, C++, 1 kHz Loop',
+        techStack: 'Isaac Gym, PPO, PyTorch, RL, Sim-to-Real',
         images: [],
       },
+      // ⑤ VLA 模型微调与部署
+      {
+        title: {
+          en: 'VLA-Based Embodied Control Pipeline: Adaptation and Optimization on LeRobot[keep updating]',
+          zh: "基于 LeRobot 框架的 VLA 具身控制算法微调与推理优化 [持续更新中]"
+        },
+        period: "2026.02 – 2026.06",
+        desc: {
+          en: "In the LeRobot framework, we introduced the LoRA method to fine-tune the SmoL-VLA, achieving 1) joint trajectory interpolation for smooth robot motion, 2) action chunking with sequential prediction for efficient multi-step action generation, and 3) real-time inference optimization for reduced latency and improved performance. The pipeline has been validated in simulation and on the so-arm101 platform, and is currently being deployed on the franka fr3 real robot platform.",
+          zh: "在 LeRobot 框架下引入 LoRA 方法微调 SmoL-VLA ,1）冻结基座做机器人关节动作空间的映射，2）推理时用时序衰减的Action Chunking结合插值平滑，降低实机抖动；3）目前已在仿真环境和so-arm101上验证，并正在向franka fr3实机平台进行部署测试。"
+        },
+        techStack: "LeRobot, SmoL-VLA, LoRA (PEFT), Action Chunking, Joint Trajectory Interpolation, PyTorch",
+        images: []
+      },
+
       // ② FCL 自避障算法
       {
         title: {
@@ -233,6 +248,20 @@ export const t = {
         techStack: 'DKF (250 Hz), WBC, PD, ROS-Gazebo, IMU',
         images: [],
       },
+      // ① IGH 主站运动控制器
+      {
+        title: {
+          en: 'Online Motion Controller (Cerebellum) Development Based on IGH EtherCAT Master',
+          zh: '基于 IGH 主站的机器人在线运动控制器（小脑）研发',
+        },
+        period: '2025.08 – 2026.02',
+        desc: {
+          en: 'Developed a real-time robot motion controller on Preempt-RT Linux with IGH-EtherCAT master, achieving 14-joint / 6-motor synchronous drive at 1 kHz control loop. Adopted DDS-based pub/sub communication architecture for cross-module data exchange. Core drive module delivered and deployed on the Galbot platform.',
+          zh: '基于 Preempt-RT 实时内核与 IGH-EtherCAT 主站，实现 14 关节电机 1 kHz 高频同步驱动的在线运动控制器；采用 DDS 发布-订阅通信架构实现跨模块数据交互。核心驱动模块已交付至银河通用（Galbot）。',
+        },
+        techStack: 'Preempt-RT, IGH-EtherCAT, DDS, C++, 1 kHz Loop',
+        images: [],
+      },
       // ④ SRS 遥操数采平台
       {
         title: {
@@ -245,48 +274,6 @@ export const t = {
           zh: '运动捕捉：基于 HTC-VIVE Tracker 光学系统获取人体位姿数据；关节映射：通过 Rodrigues 公式将 SE(3) 分解至 2-DoF 关节空间，采用 Levenberg-Marquardt（LM）迭代优化求解；在线插值：混合式样条插值方法将 30 Hz 采集频率上采样至 1 kHz 实时控制。基于 PICO 手柄末端位姿逆运动学映射的遥操版本亦已开发完成。',
         },
         techStack: 'HTC-VIVE, Rodrigues, LM, SE(3), 30 Hz→1 kHz, C++',
-        images: [],
-      },
-      // ④ 强化学习仿真
-      {
-        title: {
-          en: 'Simulated Bipedal Locomotion Reinforcement Learning Based on Isaac Gym',
-          zh: '基于 Isaac Gym 的双足机器人下肢强化学习运动控制仿真',
-        },
-        period: '2026.02 – 2026.06',
-        desc: {
-          en: 'Built a GPU-accelerated massively parallel bipedal simulation environment in Isaac Gym (4096+ envs). Designed Reward Shaping with structured state/action spaces for robust bipedal locomotion. Trained policies via PPO achieving stable omnidirectional blind locomotion across uneven terrain.',
-          zh: '基于 Isaac Gym 搭建 GPU 加速的大规模并行双足仿真环境；设计结构化 Reward Shaping 与状态/动作空间面向鲁棒步行；基于 PPO 算法训练策略，实现双足机器人在非平整地形下的全向自适应盲行。',
-        },
-        techStack: 'Isaac Gym, PPO, PyTorch, RL, Sim-to-Real',
-        images: [],
-      },
-      // ⑤ VLA 模型微调与部署
-      {
-        title: {
-          en: 'VLA-Based Embodied Control Pipeline: Adaptation and Optimization on LeRobot[keep updating]',
-          zh: "基于 LeRobot 框架的 VLA 具身控制算法微调与推理优化 [持续更新中]"
-        },
-        period: "2026.02 – 2026.05",
-        desc: {
-          en: "In the LeRobot framework, we introduced the LoRA method to fine-tune the SmoL-VLA, achieving 1) joint trajectory interpolation for smooth robot motion, 2) action chunking with sequential prediction for efficient multi-step action generation, and 3) real-time inference optimization for reduced latency and improved performance. The pipeline has been validated in simulation and on the so-arm101 platform, and is currently being deployed on the franka fr3 real robot platform.",
-          zh: "在 LeRobot 框架下引入 LoRA 方法微调 SmoL-VLA ,1）冻结基座做机器人关节动作空间的映射，2）推理时用时序衰减的Action Chunking结合插值平滑，降低实机抖动；3）目前已在仿真环境和so-arm101上验证，并正在向franka fr3实机平台进行部署测试。"
-        },
-        techStack: "LeRobot, SmoL-VLA, LoRA (PEFT), Action Chunking, Joint Trajectory Interpolation, PyTorch",
-        images: []
-      },
-      // ⑥ 水下作业机器人视觉感知与智能操纵
-      {
-        title: {
-          en: 'Visual Perception and Intelligent Manipulation System for Underwater Robots with Dual-Arm Collaboration',
-          zh: '水下作业机器人双臂协作的视觉感知与智能操纵系统开发',
-        },
-        period: '2021.09 – 2023.12',
-        desc: {
-          en: 'Perception: refraction-compensated visual model with Probability Density Function (PDF) correction for water-medium distortion + YOLOv7 for target detection and 6D pose estimation; Planning: improved RRT* with dual-arm coordination and inverse kinematics. Deployed in real underwater maintenance operations.',
-          zh: '视觉感知：水体存在热扰动导致画面有波纹和失真，构建了考虑介质折射误差的视觉补偿模型，使用AXB=YCZ的全域标定模型进行双臂标定，结合概率密度函数（PDF）修正水下畸变 + YOLOv7 实现目标检测与 6D 位姿估计；运动规划：改进 RRT* 结合双臂协同与运动学逆解，提升路径平滑性。已成功部署于实际水下维修作业场景。',
-        },
-        techStack: 'YOLOv7, RRT*, PDF Refraction Model, 6D Pose, ROS',
         images: [],
       },
       // ⑦ BIM + PointTransformerV3 构件进度分析
@@ -303,6 +290,21 @@ export const t = {
         techStack: 'PTv3, PCA, FPFH, ICP, IoU, BIM',
         images: [],
       },
+      // ⑥ 水下作业机器人视觉感知与智能操纵
+      {
+        title: {
+          en: 'Visual Perception and Intelligent Manipulation System for Underwater Robots with Dual-Arm Collaboration',
+          zh: '水下作业机器人双臂协作的视觉感知与智能操纵系统开发',
+        },
+        period: '2021.09 – 2023.12',
+        desc: {
+          en: 'Perception: refraction-compensated visual model with Probability Density Function (PDF) correction for water-medium distortion + YOLOv7 for target detection and 6D pose estimation; Planning: improved RRT* with dual-arm coordination and inverse kinematics. Deployed in real underwater maintenance operations.',
+          zh: '视觉感知：水体存在热扰动导致画面有波纹和失真，构建了考虑介质折射误差的视觉补偿模型，使用AXB=YCZ的全域标定模型进行双臂标定，结合概率密度函数（PDF）修正水下畸变 + YOLOv7 实现目标检测与 6D 位姿估计；运动规划：改进 RRT* 结合双臂协同与运动学逆解，提升路径平滑性。已成功部署于实际水下维修作业场景。',
+        },
+        techStack: 'YOLOv7, RRT*, PDF Refraction Model, 6D Pose, ROS',
+        images: [],
+      },
+
       {
         "title": {
           "en": "Multi-View Shape-from-Polarization (SfP) 3D Reconstruction System via Turntable Rotation",
