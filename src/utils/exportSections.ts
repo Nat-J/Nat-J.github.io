@@ -132,15 +132,18 @@ function buildCard2(lang: Lang): HTMLElement {
 
     <!-- 项目经历 -->
     <h2 style="${H2}">${projs.title[lang]}</h2>
-    ${projs.items.map(proj => `
-      <div style="margin-bottom:12px;">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span style="font-size:14px;font-weight:600;color:#212529;">${proj.title[lang]}</span>
-          <span style="${GRAY}">${proj.period}</span>
+    ${projs.categories.map(cat => `
+      <p style="font-size:12px;font-weight:700;color:#495057;margin:10px 0 6px;letter-spacing:0.05em;text-transform:uppercase;border-bottom:1px solid #dee2e6;padding-bottom:3px;">${cat.label[lang]}</p>
+      ${cat.items.map((proj: any) => `
+        <div style="margin-bottom:10px;padding-left:8px;border-left:2px solid #dee2e6;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-size:13px;font-weight:600;color:#212529;">${proj.title[lang]}</span>
+            <span style="${GRAY}">${proj.period}</span>
+          </div>
+          <p style="${BODY}">${proj.desc[lang]}</p>
+          ${proj.techStack ? `<div style="margin-top:3px;">${proj.techStack.split(',').map((s: string) => `<span style="${TAG}">${s.trim()}</span>`).join('')}</div>` : ''}
         </div>
-        <p style="${BODY}">${proj.desc[lang]}</p>
-        ${proj.techStack ? `<div style="margin-top:4px;">${proj.techStack.split(',').map(s => `<span style="${TAG}">${s.trim()}</span>`).join('')}</div>` : ''}
-      </div>
+      `).join('')}
     `).join('')}
   `
     return d

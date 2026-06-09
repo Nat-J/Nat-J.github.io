@@ -210,45 +210,80 @@ export default function App() {
           }}>
             {t.projects.title[lang]}
           </h2>
-          {t.projects.items.map((item, idx) => (
-            <div key={idx} className="mb-6">
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                <span className="text-[15px] font-medium" style={{ color: '#212529' }}>{item.title[lang]}</span>
-                <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
+          {(() => {
+            // 每个类别的专属配色：[条子颜色, 标签背景, 标签文字]  — 低饱和灰彩色
+            const catColors: [string, string, string][] = [
+              ['#7a8fa6', '#e8ecf1', '#3d5066'],   // 规划决策 — 灰蓝
+              ['#7a9a87', '#e6ede9', '#3d5a48'],   // 本体运控 — 灰绿
+              ['#a6907a', '#f0ebe5', '#665040'],   // 视觉感知 — 灰橙
+            ]
+            return (
+              <div className="space-y-8">
+                {t.projects.categories.map((cat, catIdx) => {
+                  const [bar, bg, txt] = catColors[catIdx % catColors.length]
+                  return (
+                    <div key={catIdx} className="flex gap-4">
+                      {/* 左侧类别竖条 */}
+                      <div className="shrink-0 flex items-stretch" style={{ width: '8px' }}>
+                        <div className="w-full rounded-sm" style={{ background: bar }} />
+                      </div>
+                      <div className="flex-1">
+                        {/* 类别名称 — 彩色药丸标签 */}
+                        <span
+                          className="inline-block text-[12px] font-semibold tracking-wide px-3 py-1 rounded mb-4"
+                          style={{ background: bg, color: txt, letterSpacing: '0.04em' }}
+                        >
+                          {cat.label[lang]}
+                        </span>
+                        {/* 项目列表 */}
+                        <div className="space-y-5">
+                          {cat.items.map((item, idx) => (
+                            <div key={idx}>
+                              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                                <span className="text-[15px] font-medium" style={{ color: '#212529' }}>{item.title[lang]}</span>
+                                <span className="text-[14px] shrink-0" style={{ color: '#6c757d' }}>{item.period}</span>
+                              </div>
+                              {item.desc && (item.desc.en || item.desc.zh) && (
+                                <p className="text-[14px] mb-1.5" style={{ color: '#212529' }}>{item.desc[lang]}</p>
+                              )}
+                              {item.techStack && (
+                                <div className="flex flex-wrap gap-1.5 mb-1">
+                                  {item.techStack.split(',').map((tech, ti) => (
+                                    <span
+                                      key={ti}
+                                      className="text-[12px] px-2 py-0.5 rounded"
+                                      style={{ background: '#e9ecef', color: '#495057' }}
+                                    >
+                                      {tech.trim()}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                              {item.images && item.images.length > 0 && (
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                  {item.images.map((img, imgIdx) => (
+                                    <a key={imgIdx} href={img} target="_blank" rel="noopener noreferrer">
+                                      <img
+                                        src={img}
+                                        alt={`${item.title[lang]} - ${imgIdx + 1}`}
+                                        className="w-[160px] h-[100px] object-cover rounded border"
+                                        style={{ borderColor: '#dee2e6' }}
+                                        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                                      />
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
-              {item.desc && (item.desc.en || item.desc.zh) && (
-                <p className="text-[14px] mb-1.5" style={{ color: '#212529' }}>{item.desc[lang]}</p>
-              )}
-              {item.techStack && (
-                <div className="flex flex-wrap gap-1.5 mb-1">
-                  {item.techStack.split(',').map((tech, ti) => (
-                    <span
-                      key={ti}
-                      className="text-[12px] px-2 py-0.5 rounded"
-                      style={{ background: '#e9ecef', color: '#495057' }}
-                    >
-                      {tech.trim()}
-                    </span>
-                  ))}
-                </div>
-              )}
-              {item.images && item.images.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {item.images.map((img, imgIdx) => (
-                    <a key={imgIdx} href={img} target="_blank" rel="noopener noreferrer">
-                      <img
-                        src={img}
-                        alt={`${item.title[lang]} - ${imgIdx + 1}`}
-                        className="w-[160px] h-[100px] object-cover rounded border"
-                        style={{ borderColor: '#dee2e6' }}
-                        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
-                      />
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+            )
+          })()}
         </section>
 
         <hr style={{ borderColor: '#dee2e6' }} className="my-8" />

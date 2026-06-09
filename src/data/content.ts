@@ -190,136 +190,151 @@ export const t = {
 
   projects: {
     title: { en: 'Projects', zh: '项目经历' },
-    items: [
-      // ④ 强化学习仿真
+    categories: [
       {
-        title: {
-          en: 'Simulated Bipedal Locomotion Reinforcement Learning Based on Isaac Gym',
-          zh: '基于 Isaac Gym 的双足机器人下肢强化学习运动控制仿真',
-        },
-        period: '2026.02 – 2026.05',
-        desc: {
-          en: 'Built a GPU-accelerated massively parallel bipedal simulation environment in Isaac Gym (4096+ envs). Designed Reward Shaping with structured state/action spaces for robust bipedal locomotion. Trained policies via PPO achieving stable omnidirectional blind locomotion across uneven terrain.',
-          zh: '基于 Isaac Gym 搭建 GPU 加速的大规模并行双足仿真环境；设计结构化 Reward Shaping 与状态/动作空间面向鲁棒步行；基于 PPO 算法训练策略，实现双足机器人在非平整地形下的全向自适应盲行。',
-        },
-        techStack: 'Isaac Gym, PPO, PyTorch, RL, Sim-to-Real',
-        images: [],
+        label: { en: 'Planning & Decision', zh: '规划决策' },
+        items: [
+          // 1 强化学习仿真
+          {
+            title: {
+              en: 'Simulated Bipedal and Quadruped Locomotion Reinforcement Learning Based on Isaac Gym and MuJoCo',
+              zh: '基于 Isaac Gym 和 MuJoCo 的双足/四足机器人强化学习策略仿真',
+            },
+            period: '2026.02 – 2026.05',
+            desc: {
+              en: 'Built a GPU-accelerated massively parallel bipedal and quadruped simulation environment in Isaac Gym (4096+ envs). Designed Reward Shaping with structured state/action spaces for robust bipedal and quadruped locomotion. Trained policies via PPO achieving stable omnidirectional blind locomotion across uneven terrain. Also, achieved stable standing for quadruped robots.',
+              zh: '基于 Isaac Gym 搭建 GPU 加速的大规模并行仿真环境；设计结构化 Reward Shaping 与状态/动作空间面向鲁棒步行；基于 PPO 算法训练策略，实现双足机器人在非平整地形下的全向自适应盲行与四足机器人的站立。',
+            },
+            techStack: 'Isaac Gym, PPO, PyTorch, RL, Sim-to-Real',
+            images: [],
+          },
+          // 2 VLA 模型微调与部署
+          {
+            title: {
+              en: 'VLA-Based Embodied Control Pipeline: Adaptation and Optimization on LeRobot[keep updating]',
+              zh: '基于 LeRobot 框架的 VLA 具身控制算法微调与推理优化 [持续更新中]'
+            },
+            period: '2026.02 – 2026.06',
+            desc: {
+              en: 'In the LeRobot framework, we introduced the LoRA method to fine-tune the SmoL-VLA, achieving 1) joint trajectory interpolation for smooth robot motion, 2) action chunking with sequential prediction for efficient multi-step action generation, and 3) real-time inference optimization for reduced latency and improved performance. The pipeline has been validated in simulation and on the so-arm101 platform, and is currently being deployed on the franka fr3 real robot platform.',
+              zh: '在 LeRobot 框架下引入 LoRA 方法微调 SmoL-VLA ,1）冻结基座做机器人关节动作空间的映射，2）推理时用时序衰减的Action Chunking结合插值平滑，降低实机抖动；3）目前已在仿真环境和so-arm101上验证，并正在向franka fr3实机平台进行部署测试。'
+            },
+            techStack: 'LeRobot, SmoL-VLA, LoRA (PEFT), Action Chunking, Joint Trajectory Interpolation, PyTorch',
+            images: [],
+          },
+        ],
       },
-      // ⑤ VLA 模型微调与部署
       {
-        title: {
-          en: 'VLA-Based Embodied Control Pipeline: Adaptation and Optimization on LeRobot[keep updating]',
-          zh: "基于 LeRobot 框架的 VLA 具身控制算法微调与推理优化 [持续更新中]"
-        },
-        period: "2026.02 – 2026.06",
-        desc: {
-          en: "In the LeRobot framework, we introduced the LoRA method to fine-tune the SmoL-VLA, achieving 1) joint trajectory interpolation for smooth robot motion, 2) action chunking with sequential prediction for efficient multi-step action generation, and 3) real-time inference optimization for reduced latency and improved performance. The pipeline has been validated in simulation and on the so-arm101 platform, and is currently being deployed on the franka fr3 real robot platform.",
-          zh: "在 LeRobot 框架下引入 LoRA 方法微调 SmoL-VLA ,1）冻结基座做机器人关节动作空间的映射，2）推理时用时序衰减的Action Chunking结合插值平滑，降低实机抖动；3）目前已在仿真环境和so-arm101上验证，并正在向franka fr3实机平台进行部署测试。"
-        },
-        techStack: "LeRobot, SmoL-VLA, LoRA (PEFT), Action Chunking, Joint Trajectory Interpolation, PyTorch",
-        images: []
+        label: { en: 'Body & Motion Control', zh: '本体运控' },
+        items: [
+          // 3 FCL 自避障算法
+          {
+            title: {
+              en: 'Robot Self-Collision Avoidance Algorithm Based on FCL',
+              zh: '基于 FCL 的机器人本体自避障算法研发',
+            },
+            period: '2025.12 – 2026.03',
+            desc: {
+              en: 'Forward kinematics: BFS-based traversal + Adjacent Coordinate Matrix (ACM) for real-time Screw-theory FK of an 18-DoF kinematic chain. Collision detection: Fast Collision Library (FCL) for minimum inter-link distance computation with self-collision margin constraints. Algorithm passed online simulation verification; physical robot validation in progress.',
+              zh: '正运动学解算：基于 BFS 遍历 + 邻接坐标矩阵（ACM）对 18-DoF 旋量运动学链进行实时迭代求解；碰撞检测：基于 Fast Collision Library（FCL）计算机器人连杆间最小距离，设定自碰撞安全裕度约束。算法已通过在线仿真验证，当前正在进行实机验证。',
+            },
+            techStack: 'FCL, BFS, ACM, Screw Theory, C++, 18-DoF',
+            images: [],
+          },
+          // 4 四足机器人运动控制仿真
+          {
+            title: {
+              en: 'Quadruped Robot Motion Control Simulation Based on Unitree Go1',
+              zh: '基于宇树 Go1 的四足机器人运动控制算法开发',
+            },
+            period: '2025.11 – 2026.02',
+            desc: {
+              en: 'State estimation: Discrete-Time Kalman Filter (DKF) at 250 Hz fusing IMU pre-integration and foot-contact odometry; Torque control: Whole-Body Control (WBC) with PD feedback for whole-body joint torque distribution. Validated dynamic gait switching and locomotion stability in ROS-Gazebo simulation.',
+              zh: '状态估计：设计离散卡尔曼滤波器（DKF），以 250 Hz 频率融合 IMU 预积分与足端接触里程计；力矩控制：基于 Whole-Body Control（WBC）+ MIT模式实现全身关节力矩分配。已在 ROS-Gazebo 仿真环境中验证动态步态切换与运动稳定性。',
+            },
+            techStack: 'DKF (250 Hz), WBC, PD, ROS-Gazebo, IMU',
+            images: [],
+          },
+          // 5 IGH 主站运动控制器
+          {
+            title: {
+              en: 'Online Motion Controller (Cerebellum) Development Based on IGH EtherCAT Master',
+              zh: '基于 IGH 主站的机器人在线运动控制器（小脑）研发',
+            },
+            period: '2025.08 – 2026.02',
+            desc: {
+              en: 'Developed a real-time robot motion controller on Preempt-RT Linux with IGH-EtherCAT master, achieving 14-joint / 6-motor synchronous drive at 1 kHz control loop. Adopted DDS-based pub/sub communication architecture for cross-module data exchange. Core drive module delivered and deployed on the Galbot platform.',
+              zh: '基于 Preempt-RT 实时内核与 IGH-EtherCAT 主站，实现 14 关节电机 1 kHz 高频同步驱动的在线运动控制器；采用 DDS 发布-订阅通信架构实现跨模块数据交互。核心驱动模块已交付至银河通用（Galbot）。',
+            },
+            techStack: 'Preempt-RT, IGH-EtherCAT, DDS, C++, 1 kHz Loop',
+            images: [],
+          },
+          // 6 SRS 遥操数采平台
+          {
+            title: {
+              en: 'Teleoperation Data Acquisition Platform (SRS Configuration)',
+              zh: '面向 SRS 构型的人形机器人遥操作数据数采平台开发',
+            },
+            period: '2025.08 – 2025.12',
+            desc: {
+              en: 'Motion capture: HTC-VIVE Tracker-based optical system for human pose acquisition; Joint mapping: Rodrigues formula for SE(3)→2-DoF joint space decomposition, solved by Levenberg-Marquardt (LM) iterative optimization; Interpolation: hybrid spline method upsampling 30 Hz capture to 1 kHz real-time control. An alternative PICO controller version with end-effector pose IK mapping also developed.',
+              zh: '运动捕捉：基于 HTC-VIVE Tracker 光学系统获取人体位姿数据；关节映射：通过 Rodrigues 公式将 SE(3) 分解至 2-DoF 关节空间，采用 Levenberg-Marquardt（LM）迭代优化求解；在线插值：混合式样条插值方法将 30 Hz 采集频率上采样至 1 kHz 实时控制。基于 PICO 手柄末端位姿逆运动学映射的遥操版本亦已开发完成。',
+            },
+            techStack: 'HTC-VIVE, Rodrigues, LM, SE(3), 30 Hz→1 kHz, C++',
+            images: [],
+          },
+        ],
       },
-
-      // ② FCL 自避障算法
       {
-        title: {
-          en: 'Robot Self-Collision Avoidance Algorithm Based on FCL',
-          zh: '基于 FCL 的机器人本体自避障算法研发',
-        },
-        period: '2025.12 – 2026.03',
-        desc: {
-          en: 'Forward kinematics: BFS-based traversal + Adjacent Coordinate Matrix (ACM) for real-time Screw-theory FK of an 18-DoF kinematic chain. Collision detection: Fast Collision Library (FCL) for minimum inter-link distance computation with self-collision margin constraints. Algorithm passed online simulation verification; physical robot validation in progress.',
-          zh: '正运动学解算：基于 BFS 遍历 + 邻接坐标矩阵（ACM）对 18-DoF 旋量运动学链进行实时迭代求解；碰撞检测：基于 Fast Collision Library（FCL）计算机器人连杆间最小距离，设定自碰撞安全裕度约束。算法已通过在线仿真验证，当前正在进行实机验证。',
-        },
-        techStack: 'FCL, BFS, ACM, Screw Theory, C++, 18-DoF',
-        images: [],
-      },
-      // ③ 四足机器人运动控制仿真
-      {
-        title: {
-          en: 'Quadruped Robot Motion Control Simulation Based on Unitree Go1',
-          zh: '基于宇树 Go1 的四足机器人运动控制算法开发',
-        },
-        period: '2025.11 – 2026.02',
-        desc: {
-          en: 'State estimation: Discrete-Time Kalman Filter (DKF) at 250 Hz fusing IMU pre-integration and foot-contact odometry; Torque control: Whole-Body Control (WBC) with PD feedback for whole-body joint torque distribution. Validated dynamic gait switching and locomotion stability in ROS-Gazebo simulation.',
-          zh: '状态估计：设计离散卡尔曼滤波器（DKF），以 250 Hz 频率融合 IMU 预积分与足端接触里程计；力矩控制：基于 Whole-Body Control（WBC）+ MIT模式实现全身关节力矩分配。已在 ROS-Gazebo 仿真环境中验证动态步态切换与运动稳定性。',
-        },
-        techStack: 'DKF (250 Hz), WBC, PD, ROS-Gazebo, IMU',
-        images: [],
-      },
-      // ① IGH 主站运动控制器
-      {
-        title: {
-          en: 'Online Motion Controller (Cerebellum) Development Based on IGH EtherCAT Master',
-          zh: '基于 IGH 主站的机器人在线运动控制器（小脑）研发',
-        },
-        period: '2025.08 – 2026.02',
-        desc: {
-          en: 'Developed a real-time robot motion controller on Preempt-RT Linux with IGH-EtherCAT master, achieving 14-joint / 6-motor synchronous drive at 1 kHz control loop. Adopted DDS-based pub/sub communication architecture for cross-module data exchange. Core drive module delivered and deployed on the Galbot platform.',
-          zh: '基于 Preempt-RT 实时内核与 IGH-EtherCAT 主站，实现 14 关节电机 1 kHz 高频同步驱动的在线运动控制器；采用 DDS 发布-订阅通信架构实现跨模块数据交互。核心驱动模块已交付至银河通用（Galbot）。',
-        },
-        techStack: 'Preempt-RT, IGH-EtherCAT, DDS, C++, 1 kHz Loop',
-        images: [],
-      },
-      // ④ SRS 遥操数采平台
-      {
-        title: {
-          en: 'Teleoperation Data Acquisition Platform (SRS Configuration)',
-          zh: '面向 SRS 构型的人形机器人遥操作数据数采平台开发',
-        },
-        period: '2025.08 – 2025.12',
-        desc: {
-          en: 'Motion capture: HTC-VIVE Tracker-based optical system for human pose acquisition; Joint mapping: Rodrigues formula for SE(3)→2-DoF joint space decomposition, solved by Levenberg-Marquardt (LM) iterative optimization; Interpolation: hybrid spline method upsampling 30 Hz capture to 1 kHz real-time control. An alternative PICO controller version with end-effector pose IK mapping also developed.',
-          zh: '运动捕捉：基于 HTC-VIVE Tracker 光学系统获取人体位姿数据；关节映射：通过 Rodrigues 公式将 SE(3) 分解至 2-DoF 关节空间，采用 Levenberg-Marquardt（LM）迭代优化求解；在线插值：混合式样条插值方法将 30 Hz 采集频率上采样至 1 kHz 实时控制。基于 PICO 手柄末端位姿逆运动学映射的遥操版本亦已开发完成。',
-        },
-        techStack: 'HTC-VIVE, Rodrigues, LM, SE(3), 30 Hz→1 kHz, C++',
-        images: [],
-      },
-      // ⑦ BIM + PointTransformerV3 构件进度分析
-      {
-        title: {
-          en: 'Component Progress Analysis Algorithm Based on BIM and PointTransformerV3',
-          zh: '基于 BIM 与 PointTransformerV3 的构件进度分析算法',
-        },
-        period: '2023.06 – 2024.06',
-        desc: {
-          en: 'Segmentation: PointTransformerV3 (PTv3) for instance-level semantic segmentation of construction components in complex scenes; Registration: PCA-based initial alignment + FPFH coarse registration + ICP fine registration; Evaluation: multi-view projection IoU for automated progress quantification and construction deviation analysis.',
-          zh: '语义分割：采用 PointTransformerV3（PTv3）对复杂施工场景中的建筑构件进行实例级语义分割；位姿对齐：PCA 初始对齐 + FPFH 粗配准 + ICP 精配准；进度量化：基于多视角投影 IoU 实现自动化施工进度评估与偏差分析。',
-        },
-        techStack: 'PTv3, PCA, FPFH, ICP, IoU, BIM',
-        images: [],
-      },
-      // ⑥ 水下作业机器人视觉感知与智能操纵
-      {
-        title: {
-          en: 'Visual Perception and Intelligent Manipulation System for Underwater Robots with Dual-Arm Collaboration',
-          zh: '水下作业机器人双臂协作的视觉感知与智能操纵系统开发',
-        },
-        period: '2021.09 – 2023.12',
-        desc: {
-          en: 'Perception: refraction-compensated visual model with Probability Density Function (PDF) correction for water-medium distortion + YOLOv7 for target detection and 6D pose estimation; Planning: improved RRT* with dual-arm coordination and inverse kinematics. Deployed in real underwater maintenance operations.',
-          zh: '视觉感知：水体存在热扰动导致画面有波纹和失真，构建了考虑介质折射误差的视觉补偿模型，使用AXB=YCZ的全域标定模型进行双臂标定，结合概率密度函数（PDF）修正水下畸变 + YOLOv7 实现目标检测与 6D 位姿估计；运动规划：改进 RRT* 结合双臂协同与运动学逆解，提升路径平滑性。已成功部署于实际水下维修作业场景。',
-        },
-        techStack: 'YOLOv7, RRT*, PDF Refraction Model, 6D Pose, ROS',
-        images: [],
-      },
-
-      {
-        "title": {
-          "en": "Multi-View Shape-from-Polarization (SfP) 3D Reconstruction System via Turntable Rotation",
-          "zh": "基于偏振相机与旋转平台的像素级多视角三维重建系统"
-        },
-        "period": "2021.01 – 2021.06",
-        "desc": {
-          "en": "Analyzed polarized images to compute Stokes vectors, derived Degree of Linear Polarization (DoLP) and Angle of Linear Polarization (AoL), and suppressed specular reflections. Developed a multi-view geometry method to resolve normal ambiguity and fuse point clouds into a seamless 3D mesh.",
-          "zh": "解析偏振图像计算 Stokes 矢量，获取线性偏振度（DoLP）与偏振角（AoL），抑制镜面高光干扰；多视角法向消歧：设计“固定相机+电控转台”标定旋转轴,利用连续旋转的多视角几何约束消除偏振法向歧义；点云融合重构：基于变换矩阵统一多视角点云与法向，经 MLS 去噪平滑后采用泊松重构生成无缝三维网格。"
-        },
-        "techStack": "Polarization Camera, Stokes Vector, Shape from Polarization (SfP), Turntable Kinematic Calibration, Normal Ambiguity Resolution, Poisson Reconstruction, OpenCV, Open3D/PCL",
-        "images": []
+        label: { en: 'Visual Perception', zh: '视觉感知' },
+        items: [
+          // 7 BIM + PointTransformerV3 构件进度分析
+          {
+            title: {
+              en: 'Component Progress Analysis Algorithm Based on BIM and PointTransformerV3',
+              zh: '基于 BIM 与 PointTransformerV3 的构件进度分析算法',
+            },
+            period: '2023.06 – 2024.06',
+            desc: {
+              en: ' Point cloud simplification: uniform random sampling based on local structured geometric features for non-uniform simplification,Segmentation: PointTransformerV3 (PTv3) for instance-level semantic segmentation of construction components in complex scenes; Registration: PCA-based initial alignment + FPFH coarse registration + ICP fine registration; Evaluation: multi-view projection IoU for automated progress quantification and construction deviation analysis.',
+              zh: '点云精简:根据局部的结构化的几何特征进行非均匀精简；语义分割：采用 PointTransformerV3（PTv3）对复杂施工场景中的建筑构件进行实例级语义分割；位姿对齐：PCA 初始对齐 + FPFH 粗配准 + ICP 精配准；进度量化：基于多视角投影 IoU 实现自动化施工进度评估与偏差分析。',
+            },
+            techStack: 'PTv3, PCA, FPFH, ICP, IoU, BIM',
+            images: [],
+          },
+          // 8 水下作业机器人视觉感知与智能操纵
+          {
+            title: {
+              en: 'Visual Perception and Intelligent Manipulation System for Underwater Robots with Dual-Arm Collaboration',
+              zh: '水下作业机器人双臂协作的视觉感知与智能操纵系统开发',
+            },
+            period: '2021.09 – 2023.12',
+            desc: {
+              en: 'Perception: refraction-compensated visual model with Probability Density Function (PDF) correction for water-medium distortion + YOLOv7 for target detection and 6D pose estimation; Planning: improved RRT* with dual-arm coordination and inverse kinematics. Deployed in real underwater maintenance operations.',
+              zh: '视觉感知：水体存在热扰动导致画面有波纹和失真，构建了考虑介质折射误差的视觉补偿模型，使用AXB=YCZ的全域标定模型进行双臂标定，结合概率密度函数（PDF）修正水下畸变 + YOLOv7 实现目标检测与 6D 位姿估计；运动规划：改进 RRT* 结合双臂协同与运动学逆解，提升路径平滑性。已成功部署于实际水下维修作业场景。',
+            },
+            techStack: 'YOLOv7, RRT*, PDF Refraction Model, 6D Pose, ROS',
+            images: [],
+          },
+          // 9 偏振三维重建
+          {
+            title: {
+              en: 'Structured Light-Guided Polarization Gradient Integration for 3D Reconstruction of Metallic Blades',
+              zh: '基于结构光引导的偏振梯度积分金属叶片三维重建方法'
+            },
+            period: '2020.12 - 2021.06',
+            desc: {
+              en: 'Addressed the data loss in high-reflective metallic blade measurement by fusing structured light and polarization. Developed a multi-frequency phase-shifting structured light system to obtain precise boundary point clouds. Designed a rotatable dynamic illumination system to eliminate azimuth ambiguity via multi-angle polarization sampling. Performed complex refractive index calibration via curve fitting of zenith angle and polarization degree. Finally, implemented a Poisson-based surface reconstruction to fuse polarization-derived gradient fields with structured light boundaries (Dirichlet constraint) for seamless 3D reconstruction.',
+              zh: '针对金属航空叶片在光学测量中因高反光导致的数据丢失难题，提出一种融合偏振信息的三维测量技术。采用多频相移面结构光获取高精度边界点云；设计并搭建了可旋转的动态光照系统，通过多角度偏振采样有效消除了方位角歧义；基于天顶角与偏振度拟合实现金属复折射率精准校正。最终通过泊松方程，将偏振获取的梯度场与结构光提供的狄利克雷边界条件进行融合，实现了金属叶片高反光区域的无缝三维重建。'
+            },
+            techStack: 'Structured Light (Phase Shifting), Shape-from-Polarization (SfP), Stokes Vector, Poisson Surface Reconstruction, Dynamic Illumination, Complex Refractive Index Calibration, Dirichlet Boundary Condition, C++, OpenCV, PCL',
+            images: [],
+          }
+        ],
       },
     ],
   },
+
 
   experience: {
     title: { en: 'Experience', zh: '工作经历' },
