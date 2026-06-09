@@ -327,7 +327,7 @@ export const t = {
               en: 'Addressed the data loss in high-reflective metallic blade measurement by fusing structured light and polarization. Developed a multi-frequency phase-shifting structured light system to obtain precise boundary point clouds. Designed a rotatable dynamic illumination system to eliminate azimuth ambiguity via multi-angle polarization sampling. Performed complex refractive index calibration via curve fitting of zenith angle and polarization degree. Finally, implemented a Poisson-based surface reconstruction to fuse polarization-derived gradient fields with structured light boundaries (Dirichlet constraint) for seamless 3D reconstruction.',
               zh: '针对金属航空叶片在光学测量中因高反光导致的数据丢失难题，提出一种融合偏振信息的三维测量技术。采用多频相移面结构光获取高精度边界点云；设计并搭建了可旋转的动态光照系统，通过多角度偏振采样有效消除了方位角歧义；基于天顶角与偏振度拟合实现金属复折射率精准校正。最终通过泊松方程，将偏振获取的梯度场与结构光提供的狄利克雷边界条件进行融合，实现了金属叶片高反光区域的无缝三维重建。'
             },
-            techStack: 'Structured Light (Phase Shifting), Shape-from-Polarization (SfP), Stokes Vector, Poisson Surface Reconstruction, Dynamic Illumination, Complex Refractive Index Calibration, Dirichlet Boundary Condition, C++, OpenCV, PCL',
+            techStack: 'Structured Light, Shape-from-Polarization, Surface Reconstruction,, OpenCV',
             images: [],
           }
         ],
