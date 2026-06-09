@@ -2,9 +2,11 @@ import { useLang } from '@/components/LangContext'
 import { t } from '@/data/content'
 import Navbar from '@/components/Navbar'
 import VisitorCounter from '@/components/VisitorCounter'
+import { useRef } from 'react'
 
 export default function App() {
   const { lang, privacy } = useLang()
+  const showcaseTrackRef = useRef<HTMLDivElement>(null)
   // 隐私模式辅助：隐私开启时返回 "***"，否则返回原文
   const m = (text: string) => privacy ? '***' : text
 
@@ -383,54 +385,65 @@ export default function App() {
           </h2>
           <div className="relative">
             <div
-              className="flex gap-4 animate-scroll"
-              style={{
-                width: `${t.showcase.items.reduce((sum, it) => sum + (it.images.length > 1 ? 496 : 356), 0) * 2}px`,
-                animation: `scroll-left ${t.showcase.items.length * 6}s linear infinite`,
-              }}
+              ref={showcaseTrackRef}
+              className="flex gap-6"
+              style={{ animation: 'showcase-scroll 30s linear infinite', width: 'max-content' }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.animationPlayState = 'paused' }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.animationPlayState = 'running' }}
             >
               {[...t.showcase.items, ...t.showcase.items].map((item, idx) => (
-                <div key={idx} className="shrink-0" style={{ width: item.images.length > 1 ? '500px' : '380px' }}>
-                  <div className="flex gap-3 justify-center">
+                <div
+                  key={idx}
+                  className="shrink-0 rounded-lg p-3"
+                  style={{
+                    border: '1px solid #dee2e6',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                    background: '#fff',
+                  }}
+                >
+                  <div className="flex gap-2">
                     {item.images.map((src, imgIdx) => (
-                      <div
+                      <img
                         key={imgIdx}
-                        className="rounded overflow-hidden border flex items-center justify-center"
+                        src={src}
+                        alt={`${item.caption[lang]} - ${imgIdx + 1}`}
+                        className="rounded"
                         style={{
-                          width: item.images.length > 1 ? '360px' : '320px',
-                          height: '280px',
-                          borderColor: '#dee2e6',
+                          height: '220px',
+                          width: 'auto',
+                          maxWidth: '400px',
+                          objectFit: 'contain',
                           background: '#f8f9fa',
                         }}
-                      >
-                        <img
-                          src={src}
-                          alt={`${item.caption[lang]} - ${imgIdx + 1}`}
-                          className="max-w-full max-h-full object-contain"
-                          onError={e => {
-                            (e.target as HTMLImageElement).style.display = 'none'
-                            const parent = (e.target as HTMLImageElement).parentElement
-                            if (parent) parent.style.background = '#e9ecef'
-                          }}
-                        />
-                      </div>
+                        onLoad={() => {
+                          const track = showcaseTrackRef.current
+                          if (!track) return
+                          const styleId = 'showcase-kf'
+                          const halfW = track.scrollWidth / 2
+                          const dur = Math.max(20, t.showcase.items.length * 5)
+                          const css = `@keyframes showcase-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-${halfW}px)} }`
+                          let el = document.getElementById(styleId) as HTMLStyleElement | null
+                          if (!el) {
+                            el = document.createElement('style')
+                            el.id = styleId
+                            document.head.appendChild(el)
+                          }
+                          el.textContent = css
+                          track.style.animation = `showcase-scroll ${dur}s linear infinite`
+                        }}
+                        onError={e => {
+                          (e.target as HTMLImageElement).style.display = 'none'
+                        }}
+                      />
                     ))}
                   </div>
-                  <p className="text-[13px] mt-1.5 text-center" style={{ color: '#6c757d' }}>
+                  <p className="text-[13px] mt-2 text-center font-medium" style={{ color: '#495057' }}>
                     {item.caption[lang]}
                   </p>
                 </div>
               ))}
             </div>
           </div>
-          <style>{`
-            @keyframes scroll-left {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-${t.showcase.items.reduce((sum, it) => sum + (it.images.length > 1 ? 496 : 356), 0)}px); }
-            }
-          `}</style>
         </section>
         {/* ===== About Me ===== */}
         <section id="aboutme" className="mb-12">
@@ -446,13 +459,13 @@ export default function App() {
             {t.aboutme.photos.map((photo, idx) => (
               <div key={idx} className="text-center">
                 <div
-                  className="rounded overflow-hidden border flex items-center justify-center"
-                  style={{ height: '250px', borderColor: '#dee2e6', background: '#f8f9fa' }}
+                  className="rounded overflow-hidden border"
+                  style={{ borderColor: '#dee2e6', background: '#f8f9fa' }}
                 >
                   <img
                     src={photo.src}
                     alt={photo.caption[lang] || `Photo ${idx + 1}`}
-                    className="max-w-full max-h-full object-contain"
+                    className="w-full h-auto block"
                     onError={e => {
                       (e.target as HTMLImageElement).style.display = 'none'
                       const parent = (e.target as HTMLImageElement).parentElement

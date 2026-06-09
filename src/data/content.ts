@@ -3,14 +3,14 @@ export type Lang = 'en' | 'zh'
 export const t = {
   nav: {
     about: { en: 'About', zh: '简介' },
-    education: { en: 'Education', zh: '教育' },
+    education: { en: 'Education', zh: '教育背景' },
     research: { en: 'Research', zh: '研究兴趣' },
-    publications: { en: 'Publications', zh: '论文' },
+    publications: { en: 'Publications', zh: '论文发表' },
     experience: { en: 'Experience', zh: '工作经历' },
-    projects: { en: 'Projects', zh: '项目' },
-    skills: { en: 'Skills', zh: '技能' },
+    projects: { en: 'Projects', zh: '项目经历' },
+    skills: { en: 'Skills', zh: '技能特长' },
     contact: { en: 'Contact', zh: '联系方式' },
-    showcase: { en: 'Gallery', zh: '展示' },
+    showcase: { en: 'Gallery', zh: '项目图片' },
     aboutme: { en: 'About Me', zh: '关于我' },
   },
 
@@ -375,7 +375,7 @@ export const t = {
       { images: ['/images/showcase-1.jpg', '/images/showcase-1b.jpg', '/images/showcase-1c.jpg'], caption: { en: 'Robot Control System', zh: '机器人控制系统' } },
       // { images: ['/images/showcase-2.jpg'], caption: { en: 'Biped Reinforcement Learning', zh: '双足强化学习' } },
       { images: ['/images/showcase-3.jpg', '/images/showcase-3b.jpg', '/images/showcase-3c.jpg'], caption: { en: 'VLA fine-tuning and deployment', zh: 'VLA微调与部署' } },
-      { images: ['/images/showcase-4.jpg', '/images/showcase-4b.jpg'], caption: { en: 'Quadruped Simulation', zh: '四足仿真控制' } },
+      { images: ['/images/showcase-4.jpg', '/images/showcase-4b.jpg', '/images/showcase-4c.jpg', '/images/showcase-4d.jpg'], caption: { en: 'Quadruped Simulation', zh: '四足仿真控制' } },
       { images: ['/images/showcase-5.jpg', '/images/showcase-5b.jpg'], caption: { en: 'Vision-guided Underwater Robot', zh: '视觉引导的水下机器人' } },
       // { images: ['/images/showcase-6.jpg'], caption: { en: 'Point Cloud Processing', zh: '点云处理与配准' } },
     ],
@@ -390,8 +390,8 @@ export const t = {
       { src: '/images/aboutme-4.jpg', caption: { en: '', zh: '' } },
     ],
     bio: {
-      en: 'singing, dancing, rapping, basketball',
-      zh: '唱、跳、rap、篮球',
+      en: 'singing, dancing, robotics, basketball',
+      zh: '唱、跳、robot、篮球',
     },
   },
 

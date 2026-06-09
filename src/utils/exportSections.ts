@@ -5,47 +5,47 @@ type Lang = 'en' | 'zh'
 
 /** 生成三张卡片并下载 */
 export async function exportAsCards(lang: Lang) {
-    const card1 = buildCard1(lang)  // 简介+教育+论文
-    const card2 = buildCard2(lang)  // 兴趣+项目
-    const card3 = buildCard3(lang)  // 经历+技能+联系
+  const card1 = buildCard1(lang)  // 简介+教育+论文
+  const card2 = buildCard2(lang)  // 兴趣+项目
+  const card3 = buildCard3(lang)  // 经历+技能+联系
 
-    document.body.appendChild(card1)
-    document.body.appendChild(card2)
-    document.body.appendChild(card3)
+  document.body.appendChild(card1)
+  document.body.appendChild(card2)
+  document.body.appendChild(card3)
 
-    try {
-        await downloadCard(card1, `card1_${lang === 'zh' ? '简介教育论文' : 'Profile_Edu_Pub'}.png`)
-        await delay(400)
-        await downloadCard(card2, `card2_${lang === 'zh' ? '兴趣项目' : 'Research_Projects'}.png`)
-        await delay(400)
-        await downloadCard(card3, `card3_${lang === 'zh' ? '经历技能联系' : 'Exp_Skills_Contact'}.png`)
-    } finally {
-        document.body.removeChild(card1)
-        document.body.removeChild(card2)
-        document.body.removeChild(card3)
-    }
+  try {
+    await downloadCard(card1, `card1_${lang === 'zh' ? '简介教育论文' : 'Profile_Edu_Pub'}.png`)
+    await delay(400)
+    await downloadCard(card2, `card2_${lang === 'zh' ? '兴趣项目' : 'Research_Projects'}.png`)
+    await delay(400)
+    await downloadCard(card3, `card3_${lang === 'zh' ? '经历技能联系' : 'Exp_Skills_Contact'}.png`)
+  } finally {
+    document.body.removeChild(card1)
+    document.body.removeChild(card2)
+    document.body.removeChild(card3)
+  }
 }
 
 function delay(ms: number) {
-    return new Promise(r => setTimeout(r, ms))
+  return new Promise(r => setTimeout(r, ms))
 }
 
 async function downloadCard(el: HTMLElement, filename: string) {
-    const canvas = await html2canvas(el, {
-        scale: 2,
-        backgroundColor: '#ffffff',
-        useCORS: true,
-        logging: false,
-    })
-    canvas.toBlob(blob => {
-        if (!blob) return
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = filename
-        a.click()
-        URL.revokeObjectURL(url)
-    }, 'image/png')
+  const canvas = await html2canvas(el, {
+    scale: 2,
+    backgroundColor: '#ffffff',
+    useCORS: true,
+    logging: false,
+  })
+  canvas.toBlob(blob => {
+    if (!blob) return
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    a.click()
+    URL.revokeObjectURL(url)
+  }, 'image/png')
 }
 
 /* ===================== 样式常量 ===================== */
@@ -59,14 +59,14 @@ const TAG = `display:inline-block;background:#e9ecef;color:#495057;font-size:11p
 
 /* ===================== 卡片1：简介+教育+论文 ===================== */
 function buildCard1(lang: Lang): HTMLElement {
-    const d = document.createElement('div')
-    d.style.cssText = `position:fixed;left:-9999px;top:0;width:${W};padding:32px;background:#fff;font-family:${FONT};`
+  const d = document.createElement('div')
+  d.style.cssText = `position:fixed;left:-9999px;top:0;width:${W};padding:32px;background:#fff;font-family:${FONT};`
 
-    const p = t.profile
-    const edu = t.education
-    const pubs = t.publications
+  const p = t.profile
+  const edu = t.education
+  const pubs = t.publications
 
-    d.innerHTML = `
+  d.innerHTML = `
     <!-- 简介 -->
     <div style="display:flex;gap:20px;margin-bottom:20px;">
       <img src="${location.origin}/images/profile_photo_local.jpg"
@@ -107,18 +107,18 @@ function buildCard1(lang: Lang): HTMLElement {
       </div>
     `).join('')}
   `
-    return d
+  return d
 }
 
 /* ===================== 卡片2：兴趣+项目 ===================== */
 function buildCard2(lang: Lang): HTMLElement {
-    const d = document.createElement('div')
-    d.style.cssText = `position:fixed;left:-9999px;top:0;width:${W};padding:32px;background:#fff;font-family:${FONT};`
+  const d = document.createElement('div')
+  d.style.cssText = `position:fixed;left:-9999px;top:0;width:${W};padding:32px;background:#fff;font-family:${FONT};`
 
-    const res = t.research
-    const projs = t.projects
+  const res = t.research
+  const projs = t.projects
 
-    d.innerHTML = `
+  d.innerHTML = `
     <!-- 研究兴趣 -->
     <h2 style="${H2_FIRST}">${res.title[lang]}</h2>
     <ul style="margin:0;padding:0 0 0 18px;">
@@ -146,19 +146,19 @@ function buildCard2(lang: Lang): HTMLElement {
       `).join('')}
     `).join('')}
   `
-    return d
+  return d
 }
 
 /* ===================== 卡片3：经历+技能+联系 ===================== */
 function buildCard3(lang: Lang): HTMLElement {
-    const d = document.createElement('div')
-    d.style.cssText = `position:fixed;left:-9999px;top:0;width:${W};padding:32px;background:#fff;font-family:${FONT};`
+  const d = document.createElement('div')
+  d.style.cssText = `position:fixed;left:-9999px;top:0;width:${W};padding:32px;background:#fff;font-family:${FONT};`
 
-    const exp = t.experience
-    const skills = t.skills
-    const contact = t.contact
+  const exp = t.experience
+  const skills = t.skills
+  const contact = t.contact
 
-    d.innerHTML = `
+  d.innerHTML = `
     <!-- 工作经历 -->
     <h2 style="${H2_FIRST}">${exp.title[lang]}</h2>
     ${exp.items.map(item => `
@@ -190,5 +190,5 @@ function buildCard3(lang: Lang): HTMLElement {
       ${contact.items[lang].map(item => `<li style="font-size:13px;color:#212529;margin-bottom:4px;">${item}</li>`).join('')}
     </ul>
   `
-    return d
+  return d
 }
