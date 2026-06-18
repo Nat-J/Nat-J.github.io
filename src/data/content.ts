@@ -298,7 +298,7 @@ export const t = {
               en: 'Component Progress Analysis Algorithm Based on BIM and PointTransformerV3',
               zh: '基于 BIM 与 PointTransformerV3 的构件进度分析算法',
             },
-            period: '2023.06 – 2024.06',
+            period: '2023.02 – 2024.06',
             desc: {
               en: ' Point cloud simplification: uniform random sampling based on local structured geometric features for non-uniform simplification,Segmentation: PointTransformerV3 (PTv3) for instance-level semantic segmentation of construction components in complex scenes; Registration: PCA-based initial alignment + FPFH coarse registration + ICP fine registration; Evaluation: multi-view projection IoU for automated progress quantification and construction deviation analysis.',
               zh: '点云精简:根据局部的结构化的几何特征进行非均匀精简；语义分割：采用 PointTransformerV3（PTv3）对复杂施工场景中的建筑构件进行实例级语义分割；位姿对齐：PCA 初始对齐 + FPFH 粗配准 + ICP 精配准；进度量化：基于多视角投影 IoU 实现自动化施工进度评估与偏差分析。',
