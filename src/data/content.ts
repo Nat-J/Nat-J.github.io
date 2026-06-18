@@ -26,9 +26,13 @@ export const t = {
       { label: 'GitHub', url: 'https://github.com/Nat-J' },
       { label: 'LinkedIn', url: 'https://www.linkedin.com/in/j-nat-07910b413/' },
     ],
+    // status: {
+    //   en: 'I am seeking [PhD/RA] opportunities in Embodied AI and Robotics starting Fall 2026/Spring 2027/Fall 2027. Target regions: Hong Kong, Singapore, and the United States.[Benefiting from interdisciplinary training, I have strong engineering skills and a good debugging intuition, and can start full-time Research Assistant work in advance. Welcome to contact me]',
+    //   zh: '正在寻找 2026 Fall / 2027 Spring / 2027 Fall 入学的具身智能与机器人方向的 [ PhD / RA ] 机会。目标地区：中国香港、新加坡、美国。[得益于交叉学科的训练，我的工程能力和调试直觉很强，可以提前开展全职RA研究工作，欢迎联系]',
+    // },
     status: {
-      en: 'I am seeking [PhD/RA] opportunities in Embodied AI and Robotics starting Fall 2026/Spring 2027/Fall 2027. Target regions: Hong Kong, Singapore, and the United States.[Benefiting from interdisciplinary training, I have strong engineering skills and a good debugging intuition, and can start full-time Research Assistant work in advance. Welcome to contact me]',
-      zh: '正在寻找 2026 Fall / 2027 Spring / 2027 Fall 入学的具身智能与机器人方向的 [ PhD / RA ] 机会。目标地区：中国香港、新加坡、美国。[得益于交叉学科的训练，我的工程能力和调试直觉很强，可以提前开展全职RA研究工作，欢迎联系]',
+      en: 'Benefiting from interdisciplinary training, I have strong engineering skills and a good debugging intuition. Welcome to contact me',
+      zh: '得益于交叉学科的训练，我的工程能力和调试直觉很强，欢迎联系',
     },
     quote: {
       en: '"Our generation was born too late to explore the Earth and too early to explore the stars, but we were born just in time to solve robotics."',
